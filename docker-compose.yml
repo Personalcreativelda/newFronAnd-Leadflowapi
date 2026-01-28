@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  flowspark-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flowspark-ui
+    ports:
+      - "3100:3100"
+    environment:
+      - VITE_CHATWOOT_TOKEN=${VITE_CHATWOOT_TOKEN:-tbvSEK5PyBjk7VKpE6gCqcsf}
+      - VITE_CHATWOOT_URL=${VITE_CHATWOOT_URL:-https://chatwoot.personalcreativelda.com}
+      - VITE_META_PIXEL_ID=${VITE_META_PIXEL_ID:-658559876958204}
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
