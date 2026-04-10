@@ -19,7 +19,7 @@ const plans = [
   {
     name: "Business",
     description: "Mais popular",
-    price: "20",
+    price: "10",
     popular: true,
     features: [
       "Até 3.000 leads/mês",
@@ -34,7 +34,7 @@ const plans = [
   {
     name: "Enterprise",
     description: "Para grandes equipes",
-    price: "50",
+    price: "59",
     popular: false,
     features: [
       "Leads ilimitados",
