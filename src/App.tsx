@@ -11,6 +11,8 @@ import { ShaderGradientCanvas, ShaderGradient } from "@shadergradient/react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfUse from "./pages/TermsOfUse";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +86,8 @@ const App = () => {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/politica" element={<PrivacyPolicy />} />
+                <Route path="/termos" element={<TermsOfUse />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

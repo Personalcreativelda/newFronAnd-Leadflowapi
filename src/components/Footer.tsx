@@ -1,29 +1,30 @@
 import { Zap } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const footerLinks = {
   Produto: [
-    { name: "Recursos", id: "recursos" },
-    { name: "Integrações", id: "recursos" },
-    { name: "Preços", id: "planos" },
-    { name: "Changelog", id: null },
+    { name: "Recursos", id: "recursos", href: null },
+    { name: "Integrações", id: "recursos", href: null },
+    { name: "Preços", id: "planos", href: null },
+    { name: "Changelog", id: null, href: null },
   ],
   Empresa: [
-    { name: "Sobre", id: null },
-    { name: "Blog", id: null },
-    { name: "Carreiras", id: null },
-    { name: "Contato", id: null },
+    { name: "Sobre", id: null, href: null },
+    { name: "Blog", id: null, href: null },
+    { name: "Carreiras", id: null, href: null },
+    { name: "Contato", id: null, href: null },
   ],
   Legal: [
-    { name: "Privacidade", id: null },
-    { name: "Termos", id: null },
-    { name: "LGPD", id: null },
-    { name: "Segurança", id: null },
+    { name: "Privacidade", id: null, href: "/politica" },
+    { name: "Termos", id: null, href: "/termos" },
+    { name: "LGPD", id: null, href: "/politica" },
+    { name: "Segurança", id: null, href: null },
   ],
   Suporte: [
-    { name: "Central de Ajuda", id: null },
-    { name: "Documentação", id: null },
-    { name: "API", id: null },
-    { name: "Status", id: null },
+    { name: "Central de Ajuda", id: null, href: null },
+    { name: "Documentação", id: null, href: null },
+    { name: "API", id: null, href: null },
+    { name: "Status", id: null, href: null },
   ],
 };
 
@@ -36,6 +37,8 @@ const scrollToSection = (id: string | null) => {
 };
 
 export const Footer = () => {
+  const navigate = useNavigate();
+
   return (
     <footer className="border-t border-border/50 bg-card/50 dark:bg-card/30">
       <div className="container mx-auto px-4 py-16">
@@ -60,13 +63,22 @@ export const Footer = () => {
               <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
-                    <button
-                      onClick={() => scrollToSection(link.id)}
-                      disabled={!link.id}
-                      className="text-sm text-muted-foreground hover:text-primary transition-colors disabled:cursor-default disabled:hover:text-muted-foreground text-left"
-                    >
-                      {link.name}
-                    </button>
+                    {link.href ? (
+                      <button
+                        onClick={() => navigate(link.href!)}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors text-left"
+                      >
+                        {link.name}
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => scrollToSection(link.id)}
+                        disabled={!link.id}
+                        className="text-sm text-muted-foreground hover:text-primary transition-colors disabled:cursor-default disabled:hover:text-muted-foreground text-left"
+                      >
+                        {link.name}
+                      </button>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -77,9 +89,15 @@ export const Footer = () => {
         {/* Bottom */}
         <div className="border-t border-border/50 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            © 2024 LeadsFlow API. Todos os direitos reservados.
+            © {new Date().getFullYear()} LeadsFlow API. Todos os direitos reservados.
           </p>
           <div className="flex items-center gap-6">
+            <button onClick={() => navigate("/politica")} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Privacidade
+            </button>
+            <button onClick={() => navigate("/termos")} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+              Termos
+            </button>
             <a href="https://www.instagram.com/leadsflowapi" target="_blank" rel="noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Instagram
             </a>
