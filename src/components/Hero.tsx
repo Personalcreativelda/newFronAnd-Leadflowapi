@@ -92,7 +92,7 @@ export const Hero = () => {
           animation: glow-pulse 2s ease-in-out infinite;
         }
         .hero-fade-up {
-          animation: fade-up 0.7s ease-out forwards;
+          animation: fade-up 0.9s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
           opacity: 0;
         }
         .hero-slide {
@@ -101,8 +101,47 @@ export const Hero = () => {
           width: 100%;
           height: 100%;
           object-fit: contain;
-          transition: opacity 520ms ease, transform 700ms ease;
+          transition: opacity 700ms ease-in-out, transform 700ms ease-in-out;
           will-change: opacity, transform;
+        }
+        @media (max-width: 1024px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
+          .hero-copy {
+            grid-row: 1; /* Make text appear first */
+            justify-self: center !important;
+            text-align: center !important;
+            max-width: 600px !important;
+            margin: 0 auto !important;
+          }
+          .hero-title {
+            font-size: 44px !important;
+          }
+          .hero-benefits {
+            justify-content: center !important;
+          }
+          .hero-ctas {
+            justify-content: center !important;
+          }
+          .hero-stats {
+            justify-content: center !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .hero-title {
+            font-size: 36px !important;
+          }
+          .hero-ctas {
+            flex-direction: column;
+          }
+          .hero-stats {
+            gap: 24px !important;
+          }
+          .hero-stat-value {
+            font-size: 32px !important;
+          }
         }
         .dark .hero-bg-glow {
           background:
@@ -160,7 +199,7 @@ export const Hero = () => {
           <h1
             className="hero-title hero-fade-up"
             style={{
-              fontSize: 50,
+              fontSize: "clamp(36px, 4vw, 58px)",
               fontWeight: 800,
               lineHeight: 1.15,
               marginBottom: 24,
@@ -168,7 +207,7 @@ export const Hero = () => {
               color: "hsl(var(--foreground))",
             }}
           >
-            <span style={{ display: "block" }}>Nunca foi tão fácil vender com IA</span>
+            <span style={{ display: "block" }}>Automatize seu funil, Multiplique</span>
             <span
               style={{
                 display: "block",
@@ -179,7 +218,7 @@ export const Hero = () => {
                 marginTop: 8,
               }}
             >
-              automação
+              suas vendas.
             </span>
           </h1>
 
@@ -194,7 +233,7 @@ export const Hero = () => {
               marginBottom: 32,
             }}
           >
-            Sua IA vende por você, 24/7. Automatize seu funil, qualifique leads e converta mais negócios com inteligência artificial.
+            Nossa IA qualifica, nutre e converte leads para você, 24/7.
           </p>
 
           {/* Trust badges */}

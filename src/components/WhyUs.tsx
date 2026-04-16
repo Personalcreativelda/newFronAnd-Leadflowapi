@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from "react";
+
 const stats = [
   {
     value: 47,
@@ -20,29 +22,69 @@ const stats = [
 ];
 
 const CircleStat = ({ value, label, description }: { value: number; label: string; description: string }) => {
-  const circumference = 2 * Math.PI * 40;
-  const offset = circumference - (value / 100) * circumference;
+  const [displayValue, setDisplayValue] = useState(0);
+  const circumference = 2 * Math.PI * 45; // Increased radius
+  const offset = circumference - (displayValue / 100) * circumference;
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          let start = 0;
+          const end = value;
+          const duration = 1000; // Animation duration in ms
+          const increment = end / (duration / 16); // ~60fps
+
+          const timer = setInterval(() => {
+            start += increment;
+            if (start >= end) {
+              setDisplayValue(end);
+              clearInterval(timer);
+            } else {
+              setDisplayValue(Math.ceil(start));
+            }
+          }, 16);
+
+          return () => clearInterval(timer);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [value]);
 
   return (
-    <div className="glass-card p-6 text-center flex flex-col items-center gap-3">
+    <div ref={ref} className="glass-card p-8 text-center flex flex-col items-center gap-4">
       {/* SVG ring */}
-      <div className="relative w-28 h-28">
+      <div className="relative w-36 h-36">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           <circle
-            cx="50" cy="50" r="40"
+            cx="50" cy="50" r="45"
             fill="none"
             stroke="currentColor"
-            strokeWidth="8"
+            strokeWidth="10"
             className="text-secondary"
           />
           <circle
-            cx="50" cy="50" r="40"
+            cx="50" cy="50" r="45"
             fill="none"
             stroke="url(#grad)"
-            strokeWidth="8"
+            strokeWidth="10"
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
+            style={{ transition: "stroke-dashoffset 1s ease-out" }}
           />
           <defs>
             <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -52,12 +94,12 @@ const CircleStat = ({ value, label, description }: { value: number; label: strin
           </defs>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-2xl font-bold text-foreground">{value}%</span>
+          <span className="text-3xl font-bold text-foreground">{displayValue}%</span>
         </div>
       </div>
 
-      <div className="font-semibold text-foreground text-sm">{label}</div>
-      <p className="text-xs text-muted-foreground leading-relaxed">{description}</p>
+      <div className="font-semibold text-foreground text-base">{label}</div>
+      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
     </div>
   );
 };
@@ -96,8 +138,10 @@ export const WhyUs = () => {
 
           {/* Stats grid */}
           <div className="grid md:grid-cols-3 gap-6">
-            {stats.map((s) => (
-              <CircleStat key={s.label} {...s} />
+            {stats.map((s, index) => (
+              <div key={s.label} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'both' }}>
+                <CircleStat {...s} />
+              </div>
             ))}
           </div>
         </div>

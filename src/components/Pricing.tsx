@@ -94,14 +94,15 @@ export const Pricing = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto px-4">
-          {plans.map((plan) => (
+          {plans.map((plan, index) => (
             <div
               key={plan.name}
               className={`relative glass-card p-6 md:p-8 ${
                 plan.popular
-                  ? "border-primary/50 glow-primary md:scale-105 lg:scale-110 z-10"
+                  ? "border-2 border-primary shadow-lg shadow-primary/20"
                   : ""
-              }`}
+              } rounded-2xl flex flex-col animate-fade-in-up`}
+              style={{ animationDelay: `${index * 150}ms`, animationFillMode: "both" }}
             >
               {plan.current && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
@@ -112,7 +113,7 @@ export const Pricing = () => {
               )}
 
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 -translate-y-1/2">
                   <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm font-medium">
                     <Sparkles className="h-4 w-4" />
                     Mais Popular

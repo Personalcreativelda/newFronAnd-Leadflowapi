@@ -18,7 +18,7 @@ export const CTA = () => {
           {/* Glow effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-3xl opacity-50" />
           
-          <div className="relative glass-card p-8 md:p-12 text-center overflow-hidden">
+          <div className="relative glass-card p-8 md:p-12 text-center overflow-hidden animate-fade-in-up">
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
             <div className="absolute bottom-0 right-0 w-40 h-40 bg-accent/10 rounded-full blur-2xl" />

@@ -34,8 +34,8 @@ export const PainPoints = () => {
 
         <div className="max-w-4xl mx-auto glass-card p-6 md:p-10">
           <div className="grid sm:grid-cols-2 gap-4">
-            {painPoints.map((point) => (
-              <div key={point} className="flex items-start gap-3">
+            {painPoints.map((point, index) => (
+              <div key={point} className="flex items-start gap-3 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}>
                 <XCircle className="h-5 w-5 text-destructive flex-shrink-0 mt-0.5" />
                 <span className="text-sm md:text-base text-muted-foreground">{point}</span>
               </div>

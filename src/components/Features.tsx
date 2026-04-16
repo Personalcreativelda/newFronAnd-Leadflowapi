@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   LayoutDashboard,
   LineChart,
@@ -52,7 +53,44 @@ const features = [
   },
 ];
 
+const screenshots = [
+  {
+    image: "/funil-de-vendas.png",
+    alt: "Funil de Vendas Kanban da LeadsFlow API",
+    title: "Funil de Vendas Visual",
+    description: "Cada lead avança automaticamente entre as etapas. Drag & drop em tempo real.",
+    tag: "CRM",
+    tagColor: "primary",
+  },
+  {
+    image: "/caixas-de-entrada.png",
+    alt: "Caixas de Entrada multi-canal da LeadsFlow API",
+    title: "Integrações Multi-canal",
+    description: "WhatsApp, Instagram, Facebook, Telegram, Email, SMS e API personalizada — tudo num só lugar.",
+    tag: "API",
+    tagColor: "accent",
+  },
+  {
+    image: "/dashboard.png",
+    alt: "Dashboard de Analytics da LeadsFlow API",
+    title: "Analytics em Tempo Real",
+    description: "Saiba exatamente qual canal, campanha e fonte gera mais receita. Dados atualizados ao segundo.",
+    tag: "DATA",
+    tagColor: "green",
+  }
+];
+
 export const Features = () => {
+  const [activeScreenshot, setActiveScreenshot] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveScreenshot((prev) => (prev + 1) % screenshots.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="recursos" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background decoration */}
@@ -80,8 +118,8 @@ export const Features = () => {
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="group glass-card p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="group glass-card p-6 hover:border-primary/50 transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
             >
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 mb-4 group-hover:from-primary/30 group-hover:to-accent/30 transition-all">
                 <feature.icon className="h-6 w-6 text-primary" />
@@ -96,70 +134,62 @@ export const Features = () => {
           ))}
         </div>
 
-        {/* ── Product screenshots row ── */}
-        <div className="mt-10 grid md:grid-cols-2 gap-6">
-          {/* Funil de Vendas */}
-          <div className="group relative">
-            <div className="absolute -inset-2 bg-gradient-to-br from-primary/15 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-xl transition-transform duration-500 group-hover:-translate-y-2">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-card/90 border-b border-border/50">
-                <div className="flex gap-1.5">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+        {/* ── Product screenshots slideshow ── */}
+        <div className="mt-16 relative w-full max-w-6xl mx-auto">
+          <div className="relative w-full" style={{ aspectRatio: "16/9" }}>
+            {screenshots.map((shot, index) => (
+              <div
+                key={shot.title}
+                className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                style={{
+                  opacity: activeScreenshot === index ? 1 : 0,
+                  zIndex: activeScreenshot === index ? 1 : 0,
+                }}
+              >
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border border-border/50 shadow-2xl">
+                  {/* Titlebar */}
+                  <div className="flex items-center gap-2 px-4 py-2.5 bg-card/90 border-b border-border/50">
+                    <div className="flex gap-1.5">
+                      <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+                      <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+                    </div>
+                    <div className="flex-1 flex justify-center">
+                      <span className="text-xs text-muted-foreground">{shot.title}</span>
+                    </div>
+                  </div>
+                  {/* Image */}
+                  <img
+                    src={shot.image}
+                    alt={shot.alt}
+                    className="w-full h-full object-cover object-top"
+                    loading="lazy"
+                  />
+                  {/* Caption overlay at the bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-6 py-5 flex items-end gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white/10 backdrop-blur flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">{shot.tag}</span>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-white text-sm">{shot.title}</h4>
+                      <p className="text-xs text-white/70 mt-0.5">{shot.description}</p>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-1 flex justify-center">
-                  <span className="text-xs text-muted-foreground">Funil de Vendas — CRM Kanban</span>
-                </div>
               </div>
-              <img
-                src="/funil-de-vendas.png"
-                alt="Funil de Vendas Kanban da LeadsFlow API"
-                className="w-full h-auto block"
-                loading="lazy"
-              />
-            </div>
-            <div className="mt-4 flex items-start gap-3">
-              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                <span className="text-primary text-sm font-bold">CRM</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground text-sm">Funil de Vendas Visual</h4>
-                <p className="text-xs text-muted-foreground mt-1">Cada lead avança automaticamente entre as etapas. Drag & drop em tempo real.</p>
-              </div>
-            </div>
+            ))}
           </div>
-
-          {/* Caixas de Entrada */}
-          <div className="group relative">
-            <div className="absolute -inset-2 bg-gradient-to-br from-accent/15 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-xl transition-transform duration-500 group-hover:-translate-y-2">
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-card/90 border-b border-border/50">
-                <div className="flex gap-1.5">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-                </div>
-                <div className="flex-1 flex justify-center">
-                  <span className="text-xs text-muted-foreground">Caixas de Entrada — Canais Conectados</span>
-                </div>
-              </div>
-              <img
-                src="/caixas-de-entrada.png"
-                alt="Caixas de Entrada multi-canal da LeadsFlow API"
-                className="w-full h-auto block"
-                loading="lazy"
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-6">
+            {screenshots.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveScreenshot(index)}
+                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                  activeScreenshot === index ? "bg-primary scale-125" : "bg-muted-foreground/50"
+                }`}
               />
-            </div>
-            <div className="mt-4 flex items-start gap-3">
-              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
-                <span className="text-accent text-xs font-bold">API</span>
-              </div>
-              <div>
-                <h4 className="font-semibold text-foreground text-sm">Integrações Multi-canal</h4>
-                <p className="text-xs text-muted-foreground mt-1">WhatsApp, Instagram, Facebook, Telegram, Email, SMS e API personalizada — tudo num só lugar.</p>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

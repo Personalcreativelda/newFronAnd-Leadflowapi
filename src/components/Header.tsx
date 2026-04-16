@@ -73,7 +73,7 @@ export const Header = () => {
         {/* Mobile Menu */}
         {isOpen && (
           <div className="md:hidden py-4 border-t border-border/50">
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-4 pl-11">
               {navLinks.map((link) => (
                 <button
                   key={link.name}

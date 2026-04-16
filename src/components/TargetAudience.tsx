@@ -54,8 +54,8 @@ export const TargetAudience = () => {
               LeadsFlow é para você se:
             </h2>
             <ul className="space-y-4">
-              {targets.map((item) => (
-                <li key={item} className="flex items-start gap-3">
+              {targets.map((item, index) => (
+                <li key={item} className="flex items-start gap-3 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}>
                   <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-base text-muted-foreground">{item}</span>
                 </li>
