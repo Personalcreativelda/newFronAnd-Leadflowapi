@@ -8,6 +8,7 @@ import { ChatwootWidget } from "@/components/ChatwootWidget";
 import { MetaPixel } from "@/components/MetaPixel";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { ShaderGradientCanvas, ShaderGradient } from "@shadergradient/react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -24,9 +25,9 @@ const Gradient = () => (
     cDistance={2.4}
     cPolarAngle={95}
     cameraZoom={1}
-    color1="#ff6a1a"
-    color2="#c73c00"
-    color3="#FD4912"
+    color1="#1f3a8a"
+    color2="#4338ca"
+    color3="#7c3aed"
     envPreset="city"
     lightType="3d"
     positionX={0}
@@ -48,44 +49,50 @@ const Gradient = () => (
   />
 );
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <TooltipProvider>
-        {/* Shader gradient background */}
-        <ShaderGradientCanvas
-          pixelDensity={1}
-          fov={45}
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            zIndex: -1,
-            pointerEvents: "none",
-          }}
-        >
-          <Gradient />
-        </ShaderGradientCanvas>
+const App = () => {
+  const isMobile = useIsMobile();
 
-        <div style={{ position: "relative", zIndex: 0 }}>
-          <Toaster />
-          <Sonner />
-          <ChatwootWidget />
-          <MetaPixel />
-          <GoogleAnalytics />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </div>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
-);
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <TooltipProvider>
+          {/* Shader gradient background */}
+          {!isMobile && (
+            <ShaderGradientCanvas
+              pixelDensity={1}
+              fov={45}
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100vw",
+                height: "100vh",
+                zIndex: -1,
+                pointerEvents: "none",
+              }}
+            >
+              <Gradient />
+            </ShaderGradientCanvas>
+          )}
+
+          <div style={{ position: "relative", zIndex: 0 }}>
+            <Toaster />
+            <Sonner />
+            <ChatwootWidget />
+            <MetaPixel />
+            <GoogleAnalytics />
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Index />} />
+                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </div>
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;

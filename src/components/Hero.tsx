@@ -266,9 +266,9 @@ export const Hero = () => {
           {/* Stats */}
           <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }} className="hero-stats hero-fade-up">
             {stats.map((s) => (
-              <div key={s.label}>
-                <div style={{ fontSize: 36, fontWeight: 800, color: "hsl(var(--foreground))", lineHeight: 1 }}>{s.value}</div>
-                <div style={{ fontSize: 12, color: "hsl(var(--muted-foreground))", textTransform: "uppercase", marginTop: 4, letterSpacing: "0.06em" }}>{s.label}</div>
+              <div key={s.label} className="hero-stat-item">
+                <div className="hero-stat-value" style={{ fontSize: 36, fontWeight: 800, color: "hsl(var(--foreground))", lineHeight: 1 }}>{s.value}</div>
+                <div className="hero-stat-label" style={{ fontSize: 12, color: "hsl(var(--muted-foreground))", textTransform: "uppercase", marginTop: 4, letterSpacing: "0.06em" }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -383,6 +383,28 @@ export const Hero = () => {
           }
           .hero-slideshow {
             width: min(560px, 92vw) !important;
+          }
+          .hero-stats {
+            width: 100%;
+            display: grid !important;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            align-items: start !important;
+          }
+          .hero-stat-item {
+            min-width: 0;
+            text-align: center;
+          }
+          .hero-stat-value {
+            font-size: clamp(32px, 8vw, 42px) !important;
+            line-height: 1.02 !important;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+          }
+          .hero-stat-label {
+            font-size: 11px !important;
+            letter-spacing: 0.05em !important;
           }
         }
       `}</style>
