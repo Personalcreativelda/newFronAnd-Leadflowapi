@@ -12,49 +12,49 @@ import {
 const features = [
   {
     icon: LayoutDashboard,
-    title: "Painel Inteligente",
-    description: "Visualize todas as métricas importantes em um dashboard personalizável e intuitivo.",
+    title: "CRM com Kanban",
+    description: "Cada lead avança no funil automaticamente. Visualize o pipeline, rotule contacts e feche mais negócios sem esforço manual.",
   },
   {
     icon: LineChart,
-    title: "Relatórios em Tempo Real",
-    description: "Filtre, exporte e analise dados atualizados instantaneamente.",
+    title: "Analytics em Tempo Real",
+    description: "Saiba exatamente qual canal, campanha e fonte gera mais receita. Dados atualizados ao segundo, exportáveis com 1 clique.",
   },
   {
     icon: Zap,
-    title: "Automação Total",
-    description: "Configure fluxos automáticos para qualificar e nutrir seus leads.",
+    title: "Automação de Funil",
+    description: "Configure fluxos com gatilhos, condições e follow-ups automáticos. Seus leads são nutridos mesmo quando você está dormindo.",
   },
   {
     icon: Bot,
-    title: "IA Integrada",
-    description: "Use inteligência artificial para prever conversões e otimizar campanhas.",
+    title: "IA que Vende por Você",
+    description: "Nossa IA faz a qualificação, responde dúvidas e empurra o lead para a compra — 24h por dia, sem salário, sem desculpa.",
   },
   {
     icon: Link2,
-    title: "Integrações",
-    description: "Conecte com WhatsApp, Instagram, Facebook e mais de 100 ferramentas.",
+    title: "Integrações Nativas",
+    description: "Conecte com WhatsApp, Instagram, Facebook, webhooks e mais de 100 ferramentas. Seus dados centralizados em 1 lugar.",
   },
   {
     icon: Shield,
-    title: "Segurança LGPD",
-    description: "Seus dados protegidos com criptografia e conformidade total.",
+    title: "100% LGPD Compliant",
+    description: "Criptografia de ponta a ponta, servidores no Brasil e total conformidade legal. Seus dados são seu patrimônio.",
   },
   {
     icon: Smartphone,
-    title: "App Mobile",
-    description: "Acesse seus leads e métricas de qualquer lugar, a qualquer hora.",
+    title: "App Mobile Incluso",
+    description: "Acompanhe seus leads, responda clientes e veja métricas de qualquer lugar. Seu negócio no bolso, sem custo extra.",
   },
   {
     icon: Users,
     title: "Gestão de Equipe",
-    description: "Distribua leads, defina metas e acompanhe a performance do time.",
+    description: "Distribua leads automaticamente, defina metas por vendedor e acompanhe quem está performando e quem precisa de suporte.",
   },
 ];
 
 export const Features = () => {
   return (
-    <section id="recursos" className="py-24 relative overflow-hidden">
+    <section id="recursos" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
@@ -62,17 +62,17 @@ export const Features = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-2 rounded-full glass-card text-sm text-muted-foreground mb-6">
-            Recursos Poderosos
+            O fim das limitações
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Tudo que você precisa para{" "}
-            <span className="gradient-text">vender mais</span>
+            Não é só mais um CRM.
+            <span className="block gradient-text">É o seu time de vendas completo.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            LeadsFlow API oferece ferramentas completas para captar, qualificar
-            e converter leads de forma eficiente.
+            LeadsFlow API entrega ferramentas que grandes empresas usam — com a facilidade
+            que pequenas e médias precisam para escalar sem contratar mais ninguém.
           </p>
         </div>
 
@@ -94,6 +94,73 @@ export const Features = () => {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* ── Product screenshots row ── */}
+        <div className="mt-10 grid md:grid-cols-2 gap-6">
+          {/* Funil de Vendas */}
+          <div className="group relative">
+            <div className="absolute -inset-2 bg-gradient-to-br from-primary/15 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-xl transition-transform duration-500 group-hover:-translate-y-2">
+              <div className="flex items-center gap-2 px-4 py-2.5 bg-card/90 border-b border-border/50">
+                <div className="flex gap-1.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <span className="text-xs text-muted-foreground">Funil de Vendas — CRM Kanban</span>
+                </div>
+              </div>
+              <img
+                src="/funil-de-vendas.png"
+                alt="Funil de Vendas Kanban da LeadsFlow API"
+                className="w-full h-auto block"
+                loading="lazy"
+              />
+            </div>
+            <div className="mt-4 flex items-start gap-3">
+              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                <span className="text-primary text-sm font-bold">CRM</span>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground text-sm">Funil de Vendas Visual</h4>
+                <p className="text-xs text-muted-foreground mt-1">Cada lead avança automaticamente entre as etapas. Drag & drop em tempo real.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Caixas de Entrada */}
+          <div className="group relative">
+            <div className="absolute -inset-2 bg-gradient-to-br from-accent/15 to-transparent rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-xl transition-transform duration-500 group-hover:-translate-y-2">
+              <div className="flex items-center gap-2 px-4 py-2.5 bg-card/90 border-b border-border/50">
+                <div className="flex gap-1.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
+                </div>
+                <div className="flex-1 flex justify-center">
+                  <span className="text-xs text-muted-foreground">Caixas de Entrada — Canais Conectados</span>
+                </div>
+              </div>
+              <img
+                src="/caixas-de-entrada.png"
+                alt="Caixas de Entrada multi-canal da LeadsFlow API"
+                className="w-full h-auto block"
+                loading="lazy"
+              />
+            </div>
+            <div className="mt-4 flex items-start gap-3">
+              <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-gradient-to-br from-accent/20 to-primary/20 flex items-center justify-center">
+                <span className="text-accent text-xs font-bold">API</span>
+              </div>
+              <div>
+                <h4 className="font-semibold text-foreground text-sm">Integrações Multi-canal</h4>
+                <p className="text-xs text-muted-foreground mt-1">WhatsApp, Instagram, Facebook, Telegram, Email, SMS e API personalizada — tudo num só lugar.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

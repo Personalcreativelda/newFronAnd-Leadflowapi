@@ -80,10 +80,10 @@ export const Footer = () => {
             © 2024 LeadsFlow API. Todos os direitos reservados.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://www.instagram.com/leadsflowapi" target="_blank" rel="noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Instagram
             </a>
-            <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+            <a href="https://www.facebook.com/leadsflowapi" target="_blank" rel="noreferrer" className="text-sm text-muted-foreground hover:text-primary transition-colors">
               Facebook
             </a>
           </div>

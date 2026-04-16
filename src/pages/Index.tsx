@@ -1,7 +1,10 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { Dashboard } from "@/components/Dashboard";
+import { PainPoints } from "@/components/PainPoints";
+import { TargetAudience } from "@/components/TargetAudience";
+import { WhyUs } from "@/components/WhyUs";
 import { Features } from "@/components/Features";
+import { AIHighlight } from "@/components/AIHighlight";
 import { Pricing } from "@/components/Pricing";
 import { FAQ } from "@/components/FAQ";
 import { CTA } from "@/components/CTA";
@@ -13,8 +16,11 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <Dashboard />
+        <PainPoints />
+        <TargetAudience />
+        <WhyUs />
         <Features />
+        <AIHighlight />
         <Pricing />
         <FAQ />
         <CTA />

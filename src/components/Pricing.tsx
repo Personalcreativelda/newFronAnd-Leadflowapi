@@ -2,55 +2,77 @@ import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
+const DASHBOARD_URL = "https://app.leadsflowapi.com/dashboard";
 
 const plans = [
   {
-    name: "Gratuito",
-    description: "Perfeito para começar",
+    name: "Free",
+    description: "Plano de entrada",
     price: "0",
     popular: false,
+    current: true,
+    ctaLabel: "Plano Gratuito",
+    ctaDisabled: true,
+    ctaUrl: DASHBOARD_URL,
     features: [
-      "Até 500 leads/mês",
-      "Dashboard básico",
-      "Suporte por email",
-      "1 usuário",
+      "Até 100 leads",
+      "100 mensagens individuais/mês",
+      "50 campanhas em massa/mês",
+      "1 canal conectado",
+      "Painel básico de métricas",
+      "Suporte por email (48h)",
     ],
   },
   {
     name: "Business",
-    description: "Mais popular",
+    description: "Para crescimento acelerado",
     price: "20",
     popular: true,
+    current: false,
+    ctaLabel: "Selecionar Plano",
+    ctaDisabled: false,
+    ctaUrl: SIGNUP_URL,
     features: [
-      "Até 3.000 leads/mês",
-      "Dashboard avançado",
+      "Até 2.000 leads",
+      "1.000 mensagens/mês",
+      "5.000 campanhas em massa/mês",
+      "Até 5 canais conectados",
+      "Assistentes de IA (marketplace + 3 custom)",
+      "1 agente de voz",
+      "Painel completo e personalizável",
+      "Relatórios em tempo real",
       "Todas as integrações",
-      "Suporte prioritário",
-      "1 usuário",
-      "Automações ilimitadas",
-      "API completa",
+      "API de acesso e HTTP endpoint",
+      "Suporte prioritário (4h)",
     ],
   },
   {
     name: "Enterprise",
-    description: "Para grandes equipes",
-    price: "50",
+    description: "Para operações de alta escala",
+    price: "40",
     popular: false,
+    current: false,
+    ctaLabel: "Selecionar Plano",
+    ctaDisabled: false,
+    ctaUrl: SIGNUP_URL,
     features: [
       "Leads ilimitados",
-      "Dashboard personalizado",
-      "Integrações custom",
+      "Mensagens individuais ilimitadas",
+      "Campanhas em massa ilimitadas",
+      "Canais ilimitados",
+      "Tudo do Business, mais:",
+      "Agentes de voz ilimitados",
       "Gerente de sucesso dedicado",
-      "1 usuário",
-      "SLA garantido",
-      "Treinamento exclusivo",
+      "SLA garantido 99.9%",
+      "Suporte prioritário 24/7",
+      "Onboarding personalizado",
     ],
   },
 ];
 
 export const Pricing = () => {
   return (
-    <section id="planos" className="py-24 relative overflow-hidden">
+    <section id="planos" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
@@ -58,16 +80,16 @@ export const Pricing = () => {
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <span className="inline-block px-4 py-2 rounded-full glass-card text-sm text-muted-foreground mb-6">
-            Planos & Preços
+            Planos e Preços
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Escolha o plano{" "}
-            <span className="gradient-text">ideal para você</span>
+            Invista menos do que um funcionário.
+            <span className="block gradient-text">Produza muito mais.</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comece grátis por 14 dias. Sem compromisso, cancele quando quiser.
+            Comece grátis, sem cartão de crédito. Faça upgrade quando quiser — ou cancele com 1 clique.
           </p>
         </div>
 
@@ -81,6 +103,14 @@ export const Pricing = () => {
                   : ""
               }`}
             >
+              {plan.current && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-muted text-foreground text-sm font-medium border border-border/70">
+                    Plano Atual
+                  </div>
+                </div>
+              )}
+
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm font-medium">
@@ -123,9 +153,10 @@ export const Pricing = () => {
                 variant={plan.popular ? "gradient" : "outline"}
                 className="w-full"
                 size="lg"
-                onClick={() => window.location.href = SIGNUP_URL}
+                disabled={plan.ctaDisabled}
+                onClick={() => window.location.href = plan.ctaUrl}
               >
-                Começar Agora
+                {plan.ctaLabel}
               </Button>
             </div>
           ))}
