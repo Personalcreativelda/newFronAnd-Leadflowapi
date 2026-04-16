@@ -158,6 +158,7 @@ export const Hero = () => {
 
           {/* Headline */}
           <h1
+            className="hero-title hero-fade-up"
             style={{
               fontSize: 50,
               fontWeight: 800,
@@ -166,7 +167,6 @@ export const Hero = () => {
               letterSpacing: "-0.02em",
               color: "hsl(var(--foreground))",
             }}
-            className="hero-fade-up"
           >
             <span style={{ display: "block" }}>Nunca foi tão fácil vender com IA</span>
             <span
@@ -185,6 +185,7 @@ export const Hero = () => {
 
           {/* Subtitle */}
           <p
+            className="hero-subtitle hero-fade-up"
             style={{
               fontSize: 16,
               color: "hsl(var(--muted-foreground))",
@@ -192,13 +193,13 @@ export const Hero = () => {
               maxWidth: 520,
               marginBottom: 32,
             }}
-            className="hero-fade-up"
           >
             Sua IA vende por você, 24/7. Automatize seu funil, qualifique leads e converta mais negócios com inteligência artificial.
           </p>
 
           {/* Trust badges */}
           <div
+            className="hero-benefits hero-fade-up"
             style={{
               display: "flex",
               alignItems: "center",
@@ -206,7 +207,6 @@ export const Hero = () => {
               marginBottom: 32,
               flexWrap: "wrap",
             }}
-            className="hero-fade-up"
           >
             {benefits.map((b) => (
               <div key={b} style={{ display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}>
@@ -218,8 +218,8 @@ export const Hero = () => {
 
           {/* CTAs */}
           <div
+            className="hero-ctas hero-fade-up"
             style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 48 }}
-            className="hero-fade-up"
           >
             <button
               className="hero-cta-primary"
@@ -264,7 +264,7 @@ export const Hero = () => {
           </div>
 
           {/* Stats */}
-          <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }} className="hero-fade-up">
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }} className="hero-stats hero-fade-up">
             {stats.map((s) => (
               <div key={s.label}>
                 <div style={{ fontSize: 36, fontWeight: 800, color: "hsl(var(--foreground))", lineHeight: 1 }}>{s.value}</div>
@@ -295,6 +295,7 @@ export const Hero = () => {
 
           {/* Dashboard slideshow */}
           <div
+            className="hero-slideshow"
             style={{
               position: "relative",
               width: "min(900px, 82vw)",
@@ -325,6 +326,41 @@ export const Hero = () => {
 
       {/* Mobile responsive overrides */}
       <style>{`
+        @media (max-width: 1024px) {
+          .hero-section {
+            min-height: auto !important;
+            padding-top: 112px !important;
+            padding-bottom: 56px !important;
+          }
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            padding: 0 24px !important;
+            gap: 24px !important;
+            align-items: start !important;
+          }
+          .hero-copy {
+            max-width: 720px !important;
+            justify-self: center !important;
+            text-align: center !important;
+          }
+          .hero-title,
+          .hero-subtitle {
+            margin-left: auto !important;
+            margin-right: auto !important;
+          }
+          .hero-benefits,
+          .hero-ctas,
+          .hero-stats {
+            justify-content: center !important;
+          }
+          .hero-phone-col {
+            display: flex !important;
+            margin-top: 6px;
+          }
+          .hero-slideshow {
+            width: min(760px, 88vw) !important;
+          }
+        }
         @media (max-width: 768px) {
           .hero-section {
             min-height: auto !important;
@@ -340,19 +376,13 @@ export const Hero = () => {
           .hero-copy {
             max-width: 100% !important;
           }
-          .hero-phone-col {
-            display: none !important;
+          .hero-title { font-size: 36px !important; }
+          .hero-ctas {
+            flex-direction: column;
+            align-items: center !important;
           }
-          h1 { font-size: 36px !important; }
-        }
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .hero-section {
-            padding-top: 112px !important;
-            padding-bottom: 56px !important;
-          }
-          .hero-grid {
-            padding: 0 24px !important;
-            grid-template-columns: 1fr 1.1fr !important;
+          .hero-slideshow {
+            width: min(560px, 92vw) !important;
           }
         }
       `}</style>
