@@ -20,7 +20,7 @@ export const PhoneShowcase = () => {
             <span className="gradient-text">numa só plataforma</span>
           </h2>
           <p className="text-base text-muted-foreground max-w-xl mx-auto" style={{ lineHeight: 1.55 }}>
-            Da captação ao fecho — automatizado, em tempo real, no teu bolso.
+            Da captação ao fecho, automatizado, em tempo real, no teu bolso.
           </p>
         </div>
 

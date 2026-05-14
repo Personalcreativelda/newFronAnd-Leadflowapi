@@ -85,7 +85,7 @@ export const Pricing = () => {
             <span className="block gradient-text">Produza muito mais.</span>
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto" style={{ lineHeight: 1.55 }}>
-            Comece grátis, sem cartão de crédito. Faça upgrade quando quiser — ou cancele com 1 clique.
+            Comece grátis, sem cartão de crédito. Faça upgrade quando quiser ou cancele com 1 clique.
           </p>
         </div>
 

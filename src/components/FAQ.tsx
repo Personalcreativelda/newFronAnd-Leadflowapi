@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     question: "Não sou bom com tecnologia. Vou conseguir usar a LeadsFlow API?",
-    answer: "Sim, sem problema. A plataforma foi construída para ser simples e intuitiva — mesmo para quem nunca usou um CRM. Além disso, nossa equipe de suporte configura tudo pra você em menos de 48h e você começa a usar sem precisar entender de tecnologia.",
+    answer: "Sim, sem problema. A plataforma foi construída para ser simples e intuitiva, mesmo para quem nunca usou um CRM. Além disso, nossa equipe de suporte configura tudo pra você em menos de 48h e você começa a usar sem precisar entender de tecnologia.",
   },
   {
     question: "Como conecto meus canais (WhatsApp, Instagram, formulários) à plataforma?",
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: "Quantas fontes de leads posso conectar?",
-    answer: "Depende do plano. No Business e Enterprise pode conectar fontes ilimitadas — WhatsApp, Instagram, Facebook, formulários, landing pages, webhooks e muito mais. Todos os leads entram centralizados num único dashboard.",
+    answer: "Depende do plano. No Business e Enterprise pode conectar fontes ilimitadas: WhatsApp, Instagram, Facebook, formulários, landing pages, webhooks e muito mais. Todos os leads entram centralizados num único dashboard.",
   },
   {
     question: "Meu computador precisa ficar ligado para as automações funcionarem?",
@@ -28,7 +28,7 @@ const faqs = [
   },
   {
     question: "Quantos fluxos de automação posso criar?",
-    answer: "No plano Business e Enterprise, os fluxos são ilimitados. Você pode criar fluxos diferentes para cada canal, campanha ou perfil de cliente — sem restrição.",
+    answer: "No plano Business e Enterprise, os fluxos são ilimitados. Você pode criar fluxos diferentes para cada canal, campanha ou perfil de cliente, sem restrição.",
   },
   {
     question: "Quantos leads a IA consegue atender ao mesmo tempo?",
@@ -40,7 +40,7 @@ const faqs = [
   },
   {
     question: "Quantos utilizadores podem aceder à plataforma na mesma conta?",
-    answer: "Os planos atuais incluem 1 utilizador por padrão. Para equipas maiores, entre em contacto — temos condições especiais para múltiplos acessos com permissões por função.",
+    answer: "Os planos atuais incluem 1 utilizador por padrão. Para equipas maiores, entre em contacto. Temos condições especiais para múltiplos acessos com permissões por função.",
   },
   {
     question: "Como funciona a biblioteca de automações prontas?",
@@ -64,7 +64,7 @@ export const FAQ = () => {
             <span className="gradient-text">dúvidas?</span>
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto" style={{ lineHeight: 1.55 }}>
-            Respondemos as perguntas mais comuns. Se ainda tiver dúvida, fale com a gente — estamos a 1 mensagem de distância.
+            Respondemos as perguntas mais comuns. Se ainda tiver dúvida, fale com a gente, estamos a 1 mensagem de distância.
           </p>
         </div>
 

@@ -27,7 +27,7 @@ const tabs = [
     img: "/caixas-de-entrada.png",
     alt: "Configuração de canais: WhatsApp, Instagram, Facebook, Telegram e mais",
     badge: "Multi-canal",
-    description: "Conecte WhatsApp, Instagram, Facebook, Telegram, Email e muito mais — tudo centralizado numa única plataforma.",
+    description: "Conecte WhatsApp, Instagram, Facebook, Telegram, Email e muito mais, tudo centralizado numa única plataforma.",
   },
 ];
 

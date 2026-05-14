@@ -28,7 +28,7 @@ const features = [
   {
     icon: Bot,
     title: "IA que Vende por Você",
-    description: "Nossa IA faz a qualificação, responde dúvidas e empurra o lead para a compra — 24h por dia, sem salário, sem desculpa.",
+    description: "Nossa IA faz a qualificação, responde dúvidas e empurra o lead para a compra: 24h por dia, sem salário, sem desculpa.",
   },
   {
     icon: Link2,
@@ -60,7 +60,7 @@ export const Features = () => {
         <div className="text-center mb-10">
           <span className="section-pill">O fim das limitações</span>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto mt-2" style={{ lineHeight: 1.55 }}>
-            LeadsFlow API entrega ferramentas que grandes empresas usam — com a facilidade
+            LeadsFlow API entrega ferramentas que grandes empresas usam, com a facilidade
             que pequenas e médias precisam para escalar sem contratar mais ninguém.
           </p>
         </div>

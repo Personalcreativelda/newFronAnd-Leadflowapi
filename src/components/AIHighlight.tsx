@@ -5,7 +5,7 @@ const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
 
 const messages = [
   { from: "lead", text: "Boa tarde! Vi o anúncio de vocês. Como funciona?" },
-  { from: "ai", text: "Olá! Aqui é a Ava, da LeadsFlow. Vi que você se cadastrou — posso te explicar tudo agora mesmo. O que mais te interessa: automatizar follow-ups ou ter um dashboard completo dos seus leads?" },
+  { from: "ai", text: "Olá! Aqui é a Ava, da LeadsFlow. Vi que você se cadastrou. Posso te explicar tudo agora mesmo. O que mais te interessa: automatizar follow-ups ou ter um dashboard completo dos seus leads?" },
   { from: "lead", text: "Os dois, na verdade. Tenho leads caindo em WhatsApp e email e não consigo acompanhar." },
   { from: "ai", text: "Entendo perfectamente. Nós centralizamos tudo e a IA faz a qualificação por você. Você prefere começar com o plano gratuito ou já quer ver o Business com automações ilimitadas?" },
 ];
@@ -26,7 +26,7 @@ export const AIHighlight = () => {
               </h2>
               <div className="space-y-4 text-sm text-muted-foreground mb-8" style={{ lineHeight: 1.55 }}>
                 <p>Nossa Inteligência Artificial treinada para transformar leads curiosos em clientes compradores.</p>
-                <p>Com a Ava, seus leads são qualificados, respondidos e empurrados para a compra — automaticamente, sem você precisar tocar em nada.</p>
+                <p>Com a Ava, seus leads são qualificados, respondidos e empurrados para a compra, automaticamente, sem você precisar tocar em nada.</p>
                 <p>A Ava trabalha <strong className="text-foreground">todos os dias da semana, a qualquer hora</strong>, sem salário, sem férias e sem décimo terceiro.</p>
                 <p>Com pouca configuração, a Ava entrega um desempenho até <strong className="text-foreground">11x melhor do que um atendente humano</strong>.</p>
               </div>

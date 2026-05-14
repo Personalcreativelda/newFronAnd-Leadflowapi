@@ -5,7 +5,7 @@ const stats = [
     value: 47,
     label: "Aumento na conversão",
     description:
-      "Leads qualificados automaticamente e abordados no momento certo — por uma IA que entende de resultado.",
+      "Leads qualificados automaticamente e abordados no momento certo, por uma IA que entende de resultado.",
   },
   {
     value: 62,
@@ -121,12 +121,12 @@ export const WhyUs = () => {
                 Somos a plataforma mais completa para captura, qualificação e conversão de leads com IA.
               </p>
               <p>
-                Criamos um <strong className="text-foreground">sistema que automatiza de verdade</strong> — sem gambiarra,
+                Criamos um <strong className="text-foreground">sistema que automatiza de verdade</strong>, sem gambiarra,
                 sem planilha, sem depender de alguém lembrando de fazer follow-up.
               </p>
               <p>
                 Você tem suporte especializado que configura tudo em tempo recorde.{" "}
-                <strong className="text-foreground">Em menos de 48h sua operação vira uma máquina de conversão</strong> — pronta para vender 24h por dia.
+                <strong className="text-foreground">Em menos de 48h sua operação vira uma máquina de conversão</strong>, pronta para vender 24h por dia.
               </p>
             </div>
           </div>

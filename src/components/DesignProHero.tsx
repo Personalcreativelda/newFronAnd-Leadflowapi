@@ -49,7 +49,7 @@ export const DesignProHero = () => {
 
         {/* Subheading */}
         <p className="mt-5 max-w-md px-2 text-sm text-white/70 sm:max-w-lg sm:text-base md:mt-8 md:px-0">
-          A nossa IA qualifica, nutre e converte os teus leads automaticamente —
+          A nossa IA qualifica, nutre e converte os teus leads automaticamente,
           para que te focuses apenas em fechar negócios.
         </p>
 

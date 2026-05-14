@@ -46,7 +46,7 @@ export const CTA = () => {
               </h2>
 
               <p className="text-base text-muted-foreground max-w-xl mx-auto mb-10" style={{ lineHeight: 1.55 }}>
-                Mais de 3.000 empresas já pararam de depender de sorte — e passaram a usar dados, automação e IA para crescer. A sua vez.
+                Mais de 3.000 empresas já pararam de depender de sorte e passaram a usar dados, automação e IA para crescer. A sua vez.
               </p>
 
               <div className="flex flex-col sm:flex-row justify-center gap-4">
