@@ -55,7 +55,8 @@ export const DesignProHero = () => {
 
         {/* CTA */}
         <button
-          className="group mt-7 flex items-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-900 md:mt-8 md:px-8 md:py-4 md:text-base"
+          className="group mt-7 flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white transition-opacity duration-200 hover:opacity-85 md:mt-8 md:px-8 md:py-4 md:text-base"
+          style={{ background: "#533AFD" }}
           onClick={() => (window.location.href = "https://app.leadsflowapi.com/signup")}
         >
           Começar Grátis

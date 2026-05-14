@@ -29,9 +29,11 @@ export const Header = () => {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50"
+      className="fixed top-3 left-0 right-0 z-50"
       style={{
-        background: "hsl(var(--background))",
+        background: "rgba(8,8,13,0.75)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
       }}
     >
