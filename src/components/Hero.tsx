@@ -58,15 +58,14 @@ export const Hero = () => {
         paddingBottom: "clamp(40px, 7vh, 88px)",
       }}
     >
-      {/* Background glow */}
+      {/* Background: Stripe 135deg diagonal overlay */}
       <div
         className="hero-bg-glow"
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "radial-gradient(ellipse 60% 70% at 75% 50%, rgba(168,85,247,0.16) 0%, transparent 70%)," +
-            "radial-gradient(ellipse 40% 50% at 60% 30%, rgba(14,165,233,0.12) 0%, transparent 60%)",
+            "linear-gradient(135deg, rgba(83,58,253,0.10) 0%, rgba(255,97,24,0.07) 100%)",
           pointerEvents: "none",
         }}
       />
@@ -77,19 +76,20 @@ export const Hero = () => {
           0%, 100% { transform: translateY(0px); }
           50%       { transform: translateY(-6px); }
         }
-        @keyframes glow-pulse {
-          0%, 100% { box-shadow: 0 8px 24px rgba(0,229,200,0.35), 0 0 32px rgba(244,114,182,0.25); }
-          50%      { box-shadow: 0 8px 32px rgba(0,229,200,0.5), 0 0 48px rgba(244,114,182,0.35); }
-        }
         .hero-tag {
           animation: hero-float 3s ease-in-out infinite;
         }
         .hero-cta-primary {
-          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+          transition: all 0.2s ease;
         }
         .hero-cta-primary:hover {
-          transform: translateY(-2px);
-          animation: glow-pulse 2s ease-in-out infinite;
+          background: #4329E8 !important;
+          transform: translateY(-1px);
+          box-shadow: 0px 8px 24px rgba(83, 58, 253, 0.35) !important;
+        }
+        .hero-cta-primary:active {
+          background: #3720D4 !important;
+          transform: scale(0.98);
         }
         .hero-fade-up {
           animation: fade-up 0.9s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;
@@ -145,8 +145,7 @@ export const Hero = () => {
         }
         .dark .hero-bg-glow {
           background:
-            radial-gradient(ellipse 60% 70% at 75% 50%, rgba(180,0,255,0.13) 0%, transparent 70%),
-            radial-gradient(ellipse 40% 50% at 60% 30%, rgba(0,200,255,0.08) 0%, transparent 60%) !important;
+            linear-gradient(135deg, rgba(83,58,253,0.15) 0%, rgba(255,97,24,0.08) 100%) !important;
         }
       `}</style>
 
@@ -181,17 +180,18 @@ export const Hero = () => {
               display: "inline-flex",
               alignItems: "center",
               gap: 6,
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid hsl(var(--border))",
-              borderRadius: 999,
-              padding: "8px 16px",
-              fontSize: 13,
-              color: "hsl(var(--muted-foreground))",
+              background: "#E8E9FF",
+              border: "1px solid #C9C3F0",
+              borderRadius: 3,
+              padding: "4px 12px",
+              fontSize: 12,
+              fontWeight: 500,
+              color: "#533AFD",
               marginBottom: 28,
             }}
             className="hero-fade-up"
           >
-            <span style={{ color: "#00e5c8", fontSize: 14 }}>✦</span>
+            <span style={{ fontSize: 10 }}>✦</span>
             Confiado por mais de 3.000 empresas
           </div>
 
@@ -199,11 +199,11 @@ export const Hero = () => {
           <h1
             className="hero-title hero-fade-up"
             style={{
-              fontSize: "clamp(36px, 4vw, 58px)",
-              fontWeight: 800,
+              fontSize: "clamp(32px, 4vw, 48px)",
+              fontWeight: 300,
               lineHeight: 1.15,
               marginBottom: 24,
-              letterSpacing: "-0.02em",
+              letterSpacing: "0px",
               color: "hsl(var(--foreground))",
             }}
           >
@@ -211,7 +211,7 @@ export const Hero = () => {
             <span
               style={{
                 display: "block",
-                background: "linear-gradient(90deg, #f472b6 0%, #9333ea 50%, #00c8ff 100%)",
+                background: "linear-gradient(135deg, #533AFD 0%, #FF6118 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -228,9 +228,10 @@ export const Hero = () => {
             style={{
               fontSize: 16,
               color: "hsl(var(--muted-foreground))",
-              lineHeight: 1.6,
+              lineHeight: 1.55,
               maxWidth: 520,
               marginBottom: 32,
+              fontWeight: 400,
             }}
           >
             Nossa IA qualifica, nutre e converte leads para você, 24/7.
@@ -249,7 +250,7 @@ export const Hero = () => {
           >
             {benefits.map((b) => (
               <div key={b} style={{ display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}>
-                <CheckCircle2 style={{ width: 14, height: 14, color: "#4ade80", flexShrink: 0 }} />
+                <CheckCircle2 style={{ width: 14, height: 14, color: "#533AFD", flexShrink: 0 }} />
                 <span style={{ fontSize: 13, color: "hsl(var(--muted-foreground))" }}>{b}</span>
               </div>
             ))}
@@ -264,18 +265,19 @@ export const Hero = () => {
               className="hero-cta-primary"
               onClick={() => (window.location.href = DASHBOARD_URL)}
               style={{
-                background: "linear-gradient(90deg, #00e5c8 0%, #f472b6 100%)",
+                background: "#533AFD",
                 border: "none",
-                borderRadius: 10,
-                padding: "16px 32px",
-                fontWeight: 600,
-                fontSize: 15,
-                color: "hsl(var(--foreground))",
+                borderRadius: 4,
+                padding: "15.5px 24px 16.5px 24px",
+                fontWeight: 400,
+                fontSize: 16,
+                lineHeight: "16px",
+                color: "#FFFFFF",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
-                transition: "all 0.3s ease",
+                boxShadow: "0px 4px 12px rgba(83, 58, 253, 0.25)",
               }}
             >
               Teste grátis
@@ -287,17 +289,20 @@ export const Hero = () => {
               style={{
                 background: "transparent",
                 border: "none",
-                padding: "16px 12px",
-                fontWeight: 500,
-                fontSize: 15,
-                color: "hsl(var(--foreground))",
+                padding: "15.5px 12px 16.5px 12px",
+                fontWeight: 400,
+                fontSize: 16,
+                color: "#533AFD",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
                 gap: 8,
+                transition: "color 0.2s",
               }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#4329E8")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#533AFD")}
             >
-              <ArrowUpRight style={{ width: 16, height: 16, opacity: 0.8 }} />
+              <ArrowUpRight style={{ width: 16, height: 16 }} />
               Contratar plano
             </button>
           </div>
@@ -306,8 +311,8 @@ export const Hero = () => {
           <div style={{ display: "flex", alignItems: "flex-start", gap: 40 }} className="hero-stats hero-fade-up">
             {stats.map((s) => (
               <div key={s.label} className="hero-stat-item">
-                <div className="hero-stat-value" style={{ fontSize: 36, fontWeight: 800, color: "hsl(var(--foreground))", lineHeight: 1 }}>{s.value}</div>
-                <div className="hero-stat-label" style={{ fontSize: 12, color: "hsl(var(--muted-foreground))", textTransform: "uppercase", marginTop: 4, letterSpacing: "0.06em" }}>{s.label}</div>
+                <div className="hero-stat-value" style={{ fontSize: 36, fontWeight: 300, color: "hsl(var(--foreground))", lineHeight: 1 }}>{s.value}</div>
+                <div className="hero-stat-label" style={{ fontSize: 12, color: "#64748D", textTransform: "uppercase", marginTop: 4, letterSpacing: "0.06em", fontWeight: 400 }}>{s.label}</div>
               </div>
             ))}
           </div>
@@ -324,7 +329,7 @@ export const Hero = () => {
               position: "absolute",
               width: "min(1200px, 95vw)",
               height: "min(900px, 80vh)",
-              background: "radial-gradient(ellipse at center, rgba(0,229,200,0.18) 0%, rgba(244,114,182,0.12) 50%, transparent 75%)",
+              background: "radial-gradient(ellipse at center, rgba(83,58,253,0.15) 0%, rgba(255,97,24,0.10) 50%, transparent 75%)",
               borderRadius: 120,
               filter: "blur(60px)",
               pointerEvents: "none",

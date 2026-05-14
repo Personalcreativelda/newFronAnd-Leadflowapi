@@ -73,22 +73,18 @@ const plans = [
 export const Pricing = () => {
   return (
     <section id="planos" className="py-16 md:py-24 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      </div>
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "linear-gradient(135deg, rgba(255,97,24,0.04) 0%, rgba(83,58,253,0.04) 100%)" }}
+      />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
         <div className="text-center mb-10">
-          <span className="inline-block px-4 py-2 rounded-full glass-card text-sm text-muted-foreground mb-6">
-            Planos e Preços
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <span className="section-pill">Planos e Preços</span>
+          <h2 className="stripe-h2 mb-4">
             Invista menos do que um funcionário.
             <span className="block gradient-text">Produza muito mais.</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto" style={{ lineHeight: 1.55 }}>
             Comece grátis, sem cartão de crédito. Faça upgrade quando quiser — ou cancele com 1 clique.
           </p>
         </div>
@@ -97,24 +93,29 @@ export const Pricing = () => {
           {plans.map((plan, index) => (
             <div
               key={plan.name}
-              className={`relative glass-card p-6 md:p-8 ${
-                plan.popular
-                  ? "border-2 border-primary shadow-lg shadow-primary/20"
-                  : ""
-              } rounded-2xl flex flex-col animate-fade-in-up`}
-              style={{ animationDelay: `${index * 150}ms`, animationFillMode: "both" }}
+              className="relative flex flex-col animate-fade-in-up"
+              style={{
+                background: plan.popular ? "rgba(83,58,253,0.08)" : "hsl(var(--card))",
+                border: plan.popular ? "1px solid rgba(83,58,253,0.5)" : "1px solid hsl(var(--border))",
+                borderRadius: 8,
+                padding: "32px",
+                boxShadow: plan.popular
+                  ? "0 0 32px rgba(83, 58, 253, 0.15)"
+                  : "0 1px 3px rgba(0,0,0,0.3)",
+                animationDelay: `${index * 150}ms`,
+                animationFillMode: "both",
+              }}
             >
               {plan.current && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-muted text-foreground text-sm font-medium border border-border/70">
-                    Plano Atual
-                  </div>
+                  <div className="stripe-badge-info">Plano Atual</div>
                 </div>
               )}
 
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <div className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground text-sm font-medium">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                  <div className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium text-white"
+                    style={{ background: "linear-gradient(135deg, #533AFD 0%, #FF6118 100%)", borderRadius: 4 }}>
                     <Sparkles className="h-4 w-4" />
                     Mais Popular
                   </div>
@@ -122,36 +123,29 @@ export const Pricing = () => {
               )}
 
               <div className="text-center mb-8">
-                <h3 className="text-xl font-bold text-foreground mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {plan.description}
-                </p>
+                <h3 className="text-lg font-semibold text-white mb-2">{plan.name}</h3>
+                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-sm text-muted-foreground">USD</span>
-                  <span className="text-5xl font-bold text-foreground">
-                    {plan.price}
-                  </span>
-                  <span className="text-muted-foreground">/mês</span>
+                  <span className="text-5xl font-light text-white">{plan.price}</span>
+                  <span className="text-muted-foreground text-sm">/mês</span>
                 </div>
               </div>
 
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature) => (
                   <li key={feature} className="flex items-center gap-3">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
-                      <Check className="h-3 w-3 text-primary" />
+                    <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center"
+                      style={{ background: "rgba(83,58,253,0.15)", borderRadius: "50%" }}>
+                      <Check className="h-3 w-3" style={{ color: "#A899FF" }} />
                     </div>
-                    <span className="text-sm text-muted-foreground">
-                      {feature}
-                    </span>
+                    <span className="text-sm text-muted-foreground">{feature}</span>
                   </li>
                 ))}
               </ul>
 
               <Button
-                variant={plan.popular ? "gradient" : "outline"}
+                variant={plan.popular ? "default" : "outline"}
                 className="w-full"
                 size="lg"
                 disabled={plan.ctaDisabled}

@@ -56,37 +56,37 @@ const faqs = [
 export const FAQ = () => {
   return (
     <section id="faq" className="py-16 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
         <div className="text-center mb-10">
-          <span className="inline-block px-4 py-2 rounded-full glass-card text-sm text-muted-foreground mb-6">
-            Dúvidas Frequentes
-          </span>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <span className="section-pill">Dúvidas Frequentes</span>
+          <h2 className="stripe-h2 mb-4" style={{ color: "hsl(var(--foreground))" }}>
             Ainda com{" "}
             <span className="gradient-text">dúvidas?</span>
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground max-w-2xl mx-auto" style={{ lineHeight: 1.55 }}>
             Respondemos as perguntas mais comuns. Se ainda tiver dúvida, fale com a gente — estamos a 1 mensagem de distância.
           </p>
         </div>
 
         <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+          <Accordion type="single" collapsible className="space-y-3">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="glass-card px-6 border-none animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}
+                className="animate-fade-in-up px-6"
+                style={{
+                  background: "hsl(var(--card))",
+                  border: "1px solid #D4DEE9",
+                  borderRadius: 5,
+                  animationDelay: `${index * 100}ms`,
+                  animationFillMode: 'both',
+                }}
               >
-                <AccordionTrigger className="text-left text-foreground hover:text-primary hover:no-underline py-6">
+                <AccordionTrigger className="text-left text-foreground hover:text-[#533AFD] hover:no-underline py-5 text-sm font-normal">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground pb-6">
+                <AccordionContent className="text-sm text-muted-foreground pb-5" style={{ lineHeight: 1.55 }}>
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

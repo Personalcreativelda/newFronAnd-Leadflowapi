@@ -65,7 +65,7 @@ const CircleStat = ({ value, label, description }: { value: number; label: strin
   }, [value]);
 
   return (
-    <div ref={ref} className="glass-card p-8 text-center flex flex-col items-center gap-4">
+    <div ref={ref} className="text-center flex flex-col items-center gap-4" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 5, padding: 32, boxShadow: "0px 1px 2px rgba(0,0,0,0.04)" }}>
       {/* SVG ring */}
       <div className="relative w-36 h-36">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
@@ -88,8 +88,8 @@ const CircleStat = ({ value, label, description }: { value: number; label: strin
           />
           <defs>
             <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="hsl(var(--primary))" />
-              <stop offset="100%" stopColor="hsl(var(--accent))" />
+              <stop offset="0%" stopColor="#533AFD" />
+              <stop offset="100%" stopColor="#FF6118" />
             </linearGradient>
           </defs>
         </svg>
@@ -106,17 +106,12 @@ const CircleStat = ({ value, label, description }: { value: number; label: strin
 
 export const WhyUs = () => {
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden bg-card/50 dark:bg-card/30">
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "hsl(var(--secondary))" }}>
+      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
         <div className="max-w-5xl mx-auto">
           {/* Top copy */}
           <div className="grid md:grid-cols-2 gap-8 items-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">
+            <h2 className="stripe-h2" style={{ color: "hsl(var(--foreground))" }}>
               Por que a <span className="gradient-text">LeadsFlow API</span>
               <span className="block">é a escolha definitiva</span>
               <span className="block">para quem quer crescer?</span>

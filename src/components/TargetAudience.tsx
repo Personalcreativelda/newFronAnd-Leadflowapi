@@ -9,40 +9,38 @@ const targets = [
   "É empreendedor digital e cansou de ferramentas limitadas",
 ];
 
+const VIDEO_ID = "IyZXXVLKKXY";
+
 export const TargetAudience = () => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center max-w-5xl mx-auto">
-          {/* Left: real dashboard screenshot */}
-          <div className="relative float-animation">
-            {/* Glow halo */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 to-accent/10 rounded-3xl blur-2xl" />
 
-            <div className="relative rounded-2xl overflow-hidden border border-border/50 shadow-2xl glow-primary">
-              {/* Browser chrome bar */}
-              <div className="flex items-center gap-2 px-4 py-2.5 bg-card/90 border-b border-border/50">
-                <div className="flex gap-1.5">
-                  <div className="h-2.5 w-2.5 rounded-full bg-red-500/70" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-yellow-500/70" />
-                  <div className="h-2.5 w-2.5 rounded-full bg-green-500/70" />
-                </div>
-                <div className="flex-1 flex justify-center">
-                  <div className="px-3 py-0.5 bg-secondary/60 rounded-full text-xs text-muted-foreground">
-                    app.leadsflowapi.com
-                  </div>
-                </div>
-              </div>
-              <img
-                src="/dashboard.png"
-                alt="LeadsFlow Dashboard — métricas de leads em tempo real"
-                className="w-full h-auto block"
-                loading="lazy"
+          {/* Left: YouTube player — clean, no frame */}
+          <div className="relative">
+            {/* 16:9 responsive wrapper */}
+            <div className="relative w-full overflow-hidden rounded-xl" style={{ paddingBottom: "56.25%" }}>
+              <iframe
+                className="absolute inset-0 w-full h-full"
+                src={`https://www.youtube.com/embed/${VIDEO_ID}?si=bCrrHzW0EdlZmm7H&rel=0&modestbranding=1`}
+                title="LeadsFlow — veja como funciona"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
               />
             </div>
 
             {/* Floating badge */}
-            <div className="absolute -bottom-4 -right-4 glass-card px-4 py-2 flex items-center gap-2 shadow-lg">
+            <div
+              className="absolute -bottom-4 -right-4 flex items-center gap-2 px-4 py-2 shadow-lg"
+              style={{
+                background: "hsl(var(--card))",
+                border: "1px solid hsl(var(--border))",
+                borderRadius: 8,
+              }}
+            >
               <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
               <span className="text-xs text-muted-foreground font-medium">3.000+ empresas activas</span>
             </div>
@@ -50,14 +48,20 @@ export const TargetAudience = () => {
 
           {/* Right: target list */}
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">
+            <h2 className="stripe-h2 mb-8">
               LeadsFlow é para você se:
             </h2>
             <ul className="space-y-4">
               {targets.map((item, index) => (
-                <li key={item} className="flex items-start gap-3 animate-fade-in-up" style={{ animationDelay: `${index * 100}ms`, animationFillMode: 'both' }}>
-                  <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-base text-muted-foreground">{item}</span>
+                <li
+                  key={item}
+                  className="flex items-start gap-3 animate-fade-in-up"
+                  style={{ animationDelay: `${index * 100}ms`, animationFillMode: "both" }}
+                >
+                  <CheckCircle2 className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#533AFD" }} />
+                  <span className="text-sm text-muted-foreground" style={{ lineHeight: 1.55 }}>
+                    {item}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -67,5 +71,3 @@ export const TargetAudience = () => {
     </section>
   );
 };
-
-

@@ -9,12 +9,13 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1280px",
       },
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['"sohne-var"', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'sans-serif'],
+        mono: ['"SF Mono"', 'Monaco', '"Cascadia Code"', '"Roboto Mono"', '"Courier New"', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -60,11 +61,35 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        /* Stripe Design System named tokens */
+        stripe: {
+          purple:   "#533AFD",
+          "purple-hover": "#4329E8",
+          "purple-active": "#3720D4",
+          "purple-muted": "#C9C3F0",
+          navy:     "#061B31",
+          orange:   "#FF6118",
+          slate:    "#273951",
+          "dark-blue": "#0D1738",
+          "navy-slate": "#1A2C44",
+          "interactive-slate": "#50617A",
+          "light-slate": "#64748D",
+          "border-light": "#D4DEE9",
+          "border-hover": "#B8CCDB",
+          "light-bg": "#E5EDF5",
+          lavender: "#E8E9FF",
+        },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        none: "0px",
+        sm:   "4px",   /* buttons, inputs */
+        DEFAULT: "5px", /* cards */
+        md:   "5px",   /* cards */
+        lg:   "6px",   /* dropdowns, nav */
+        xl:   "8px",
+        "2xl": "12px",
+        "3xl": "16px",
+        full: "9999px",
       },
       keyframes: {
         "accordion-down": {

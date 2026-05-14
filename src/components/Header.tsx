@@ -1,107 +1,140 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
-const LOGIN_URL = "https://app.leadsflowapi.com/login";
+const LOGIN_URL  = "https://app.leadsflowapi.com/login";
 const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
 
 const navLinks = [
-  { name: "Início", id: "hero" },
+  { name: "Início",   id: "hero" },
   { name: "Recursos", id: "recursos" },
-  { name: "Planos", id: "planos" },
-  { name: "FAQ", id: "faq" },
+  { name: "Planos",   id: "planos" },
+  { name: "FAQ",      id: "faq" },
 ];
 
 const scrollToSection = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
 export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen,   setIsOpen]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll(); // check on mount
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 md:top-2 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <button onClick={() => scrollToSection("hero")} className="flex items-center gap-2 group">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent">
-              <Zap className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-              LeadsFlow
-            </span>
-          </button>
+    <header
+      className="fixed top-0 left-0 right-0 z-50"
+      style={{
+        background: "hsl(var(--background))",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+      }}
+    >
+      <div className="mx-auto flex h-14 items-center justify-between px-4 sm:px-6 md:px-8" style={{ maxWidth: 1280 }}>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+        {/* ── Logo ── */}
+        <button
+          onClick={() => scrollToSection("hero")}
+          className="flex items-center gap-2.5 group flex-shrink-0"
+        >
+          <div className="flex h-8 w-8 items-center justify-center rounded-md" style={{ background: "#533AFD" }}>
+            <Zap className="h-4 w-4 text-white" />
+          </div>
+          <span className="text-sm font-semibold text-white transition-opacity group-hover:opacity-75">
+            LeadsFlow
+          </span>
+        </button>
+
+        {/* ── Desktop nav — pill container ── */}
+        <nav className="hidden lg:flex items-center gap-0.5 rounded-full border px-2 py-1.5 transition-all duration-300"
+          style={{
+            borderColor: scrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.15)",
+            background:  scrolled ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.05)",
+          }}
+        >
+          {navLinks.map((link) => (
+            <button
+              key={link.name}
+              onClick={() => scrollToSection(link.id)}
+              className="px-4 py-1.5 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all duration-150"
+            >
+              {link.name}
+            </button>
+          ))}
+        </nav>
+
+        {/* ── Desktop CTAs ── */}
+        <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
+          <button
+            onClick={() => (window.location.href = LOGIN_URL)}
+            className="text-sm font-medium text-white/70 hover:text-white transition-colors px-3 py-2"
+          >
+            Entrar
+          </button>
+          <Button
+            size="default"
+            onClick={() => (window.location.href = SIGNUP_URL)}
+            style={{ background: "#533AFD" }}
+            className="hover:opacity-90 transition-opacity"
+          >
+            Começar Grátis
+          </Button>
+        </div>
+
+        {/* ── Mobile toggle ── */}
+        <button
+          className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
+          onClick={() => setIsOpen((v) => !v)}
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      {/* ── Mobile menu ── */}
+      {isOpen && (
+        <div
+          className="lg:hidden px-4 pb-5 pt-2 border-t"
+          style={{
+            background: "rgba(8,8,13,0.97)",
+            backdropFilter: "blur(16px)",
+            borderColor: "rgba(255,255,255,0.08)",
+          }}
+        >
+          <nav className="flex flex-col gap-1 mb-4">
             {navLinks.map((link) => (
               <button
                 key={link.name}
-                onClick={() => scrollToSection(link.id)}
-                className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                onClick={() => { scrollToSection(link.id); setIsOpen(false); }}
+                className="text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all text-left px-3 py-2.5 rounded-lg"
               >
                 {link.name}
               </button>
             ))}
           </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
-            <Button variant="ghost" size="default" onClick={() => window.location.href = LOGIN_URL}>
+          <div className="flex flex-col gap-2 pt-3 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+            <button
+              onClick={() => (window.location.href = LOGIN_URL)}
+              className="text-sm text-white/70 hover:text-white transition-colors text-left px-3 py-2.5"
+            >
               Entrar
-            </Button>
-            <Button variant="gradient" size="default" onClick={() => window.location.href = SIGNUP_URL}>
+            </button>
+            <Button
+              size="default"
+              className="w-full"
+              onClick={() => (window.location.href = SIGNUP_URL)}
+              style={{ background: "#533AFD" }}
+            >
               Começar Grátis
             </Button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
         </div>
-
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/50">
-            <nav className="flex flex-col gap-4 pl-11">
-              {navLinks.map((link) => (
-                <button
-                  key={link.name}
-                  onClick={() => {
-                    scrollToSection(link.id);
-                    setIsOpen(false);
-                  }}
-                  className="text-base font-medium text-muted-foreground hover:text-foreground transition-colors text-left"
-                >
-                  {link.name}
-                </button>
-              ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border/50">
-                <div className="flex items-center justify-between">
-                  <span className="text-base text-muted-foreground">Tema</span>
-                  <ThemeToggle />
-                </div>
-                <Button variant="ghost" size="default" onClick={() => window.location.href = LOGIN_URL}>
-                  Entrar
-                </Button>
-                <Button variant="gradient" size="default" onClick={() => window.location.href = SIGNUP_URL}>
-                  Começar Grátis
-                </Button>
-              </div>
-            </nav>
-          </div>
-        )}
-      </div>
+      )}
     </header>
   );
 };
