@@ -7,7 +7,8 @@ const VIDEO_URL =
 export const DesignProHero = () => {
   return (
     <section
-      className="relative h-screen w-full overflow-hidden bg-black font-sans"
+      id="hero"
+      className="relative flex min-h-screen min-h-[100svh] w-full overflow-hidden bg-black font-sans"
       style={{ fontFamily: "Inter, sans-serif" }}
     >
       {/* Video background */}
@@ -23,20 +24,20 @@ export const DesignProHero = () => {
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/50" />
 
-      {/* Content — pt-14 offsets the fixed h-14 header */}
-      <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-14 text-center md:px-8">
+      {/* Content — pt-20 offsets the fixed h-14 header */}
+      <div className="relative z-10 flex w-full flex-col items-center justify-center px-4 pb-6 pt-20 text-center md:px-8">
 
         {/* Badge */}
-        <p className="mb-4 text-[10px] uppercase tracking-tight text-white/80 sm:text-xs md:mb-6 md:text-sm">
+        <p className="mb-4 text-[11px] uppercase tracking-tight text-white/80 sm:text-xs md:mb-6 md:text-sm">
           + de 3.000 Empresas já confiam na LeadsFlow
         </p>
 
         {/* Main heading — clamp scales smoothly from 320px to 1440px */}
         <h1 className="tracking-tighter text-white" style={{ lineHeight: 0.9 }}>
-          <span className="block font-medium" style={{ fontSize: "clamp(2.4rem, 10vw, 9rem)" }}>
+          <span className="block font-medium text-[clamp(2.4rem,12vw,5rem)] md:text-[clamp(2.4rem,10vw,9rem)]">
             Multiplica
           </span>
-          <span className="block font-medium" style={{ fontSize: "clamp(2.4rem, 10vw, 9rem)" }}>
+          <span className="block font-medium text-[clamp(2.4rem,12vw,5rem)] md:text-[clamp(2.4rem,10vw,9rem)]">
             <ShinyText
               text="as tuas Vendas."
               baseColor="#64CEFB"
@@ -48,9 +49,8 @@ export const DesignProHero = () => {
         </h1>
 
         {/* Subheading */}
-        <p className="mt-5 max-w-md px-2 text-sm text-white/70 sm:max-w-lg sm:text-base md:mt-8 md:px-0">
-          A nossa IA qualifica, nutre e converte os teus leads automaticamente,
-          para que te focuses apenas em fechar negócios.
+        <p className="mt-5 max-w-md px-2 text-base text-white/70 sm:max-w-lg md:mt-8 md:px-0">
+          A nossa IA qualifica, nutre e converte os teus leads automaticamente.
         </p>
 
         {/* CTA */}
