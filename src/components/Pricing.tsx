@@ -7,10 +7,8 @@ const DASHBOARD_URL = "https://app.leadsflowapi.com/dashboard";
 const plans = [
   {
     name: "Free",
-    description: "Plano de entrada",
     price: "0",
     popular: false,
-    current: true,
     ctaLabel: "Plano Gratuito",
     ctaDisabled: true,
     ctaUrl: DASHBOARD_URL,
@@ -25,10 +23,8 @@ const plans = [
   },
   {
     name: "Business",
-    description: "Para crescimento acelerado",
     price: "20",
     popular: true,
-    current: false,
     ctaLabel: "Selecionar Plano",
     ctaDisabled: false,
     ctaUrl: SIGNUP_URL,
@@ -48,10 +44,8 @@ const plans = [
   },
   {
     name: "Enterprise",
-    description: "Para operações de alta escala",
     price: "40",
     popular: false,
-    current: false,
     ctaLabel: "Selecionar Plano",
     ctaDisabled: false,
     ctaUrl: SIGNUP_URL,
@@ -72,33 +66,32 @@ const plans = [
 
 export const Pricing = () => {
   return (
-    <section id="planos" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="planos" className="py-12 md:py-24 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none"
         style={{ background: "linear-gradient(135deg, rgba(255,97,24,0.04) 0%, rgba(83,58,253,0.04) 100%)" }}
       />
 
       <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
         <div className="text-center mb-10">
-          <span className="section-pill">Planos e Preços</span>
           <h2 className="stripe-h2 mb-4">
             Invista menos do que um funcionário.
             <span className="block gradient-text">Produza muito mais.</span>
           </h2>
           <p className="text-base text-muted-foreground max-w-2xl mx-auto" style={{ lineHeight: 1.55 }}>
-            Comece grátis, sem cartão de crédito. Faça upgrade quando quiser ou cancele com 1 clique.
+            Comece grátis, sem cartão de crédito.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto px-4">
+        {/* Empilhado até lg, com o plano mais popular primeiro */}
+        <div className="grid lg:grid-cols-3 gap-8 max-w-md lg:max-w-5xl mx-auto lg:px-4">
           {plans.map((plan, index) => (
             <div
               key={plan.name}
-              className="relative flex flex-col animate-fade-in-up"
+              className={`relative flex flex-col animate-fade-in-up p-6 lg:p-8 ${plan.popular ? "order-first lg:order-none" : ""}`}
               style={{
                 background: plan.popular ? "rgba(83,58,253,0.08)" : "hsl(var(--card))",
                 border: plan.popular ? "1px solid rgba(83,58,253,0.5)" : "1px solid hsl(var(--border))",
                 borderRadius: 8,
-                padding: "32px",
                 boxShadow: plan.popular
                   ? "0 0 32px rgba(83, 58, 253, 0.15)"
                   : "0 1px 3px rgba(0,0,0,0.3)",
@@ -106,12 +99,6 @@ export const Pricing = () => {
                 animationFillMode: "both",
               }}
             >
-              {plan.current && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="stripe-badge-info">Plano Atual</div>
-                </div>
-              )}
-
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                   <div className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium text-white"
@@ -122,9 +109,8 @@ export const Pricing = () => {
                 </div>
               )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-lg font-semibold text-white mb-2">{plan.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
+              <div className="text-center mb-6 lg:mb-8">
+                <h3 className="text-lg font-semibold text-white mb-4">{plan.name}</h3>
                 <div className="flex items-baseline justify-center gap-1">
                   <span className="text-sm text-muted-foreground">USD</span>
                   <span className="text-5xl font-light text-white">{plan.price}</span>
@@ -132,9 +118,9 @@ export const Pricing = () => {
                 </div>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <ul className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-center gap-3">
+                  <li key={feature} className="flex items-start gap-3 lg:items-center">
                     <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center"
                       style={{ background: "rgba(83,58,253,0.15)", borderRadius: "50%" }}>
                       <Check className="h-3 w-3" style={{ color: "#A899FF" }} />

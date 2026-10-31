@@ -1,44 +1,66 @@
 import { Zap } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+
+// As páginas legais e a documentação vivem no app (as mesmas que a Meta verifica)
+const APP_URL = "https://app.leadsflowapi.com";
+const SUPPORT_EMAIL = "suporte@leadsflowapi.com";
 
 const footerLinks = {
   Produto: [
-    { name: "Recursos",    id: "recursos", href: null },
-    { name: "Integrações", id: "recursos", href: null },
-    { name: "Preços",      id: "planos",   href: null },
-    { name: "Changelog",   id: null,       href: null },
+    { name: "Recursos", href: "#recursos" },
+    { name: "Preços", href: "#planos" },
+    { name: "Perguntas frequentes", href: "#faq" },
+    { name: "Entrar", href: `${APP_URL}/login` },
   ],
   Empresa: [
-    { name: "Sobre",     id: null, href: null },
-    { name: "Blog",      id: null, href: null },
-    { name: "Carreiras", id: null, href: null },
-    { name: "Contato",   id: null, href: null },
+    { name: "Quem somos", href: `${APP_URL}/privacidade#quem-somos` },
+    { name: "Contacto", href: `mailto:${SUPPORT_EMAIL}` },
   ],
   Legal: [
-    { name: "Privacidade", id: null, href: "/politica" },
-    { name: "Termos",      id: null, href: "/termos" },
-    { name: "LGPD",        id: null, href: "/politica" },
-    { name: "Segurança",   id: null, href: null },
+    { name: "Política de privacidade", href: `${APP_URL}/privacidade` },
+    { name: "Termos de uso", href: `${APP_URL}/termos` },
+    { name: "Eliminação de dados", href: `${APP_URL}/privacidade#eliminacao-de-dados` },
+    { name: "Segurança", href: `${APP_URL}/privacidade#seguranca` },
   ],
   Suporte: [
-    { name: "Central de Ajuda", id: null, href: null },
-    { name: "Documentação",     id: null, href: null },
-    { name: "API",              id: null, href: null },
-    { name: "Status",           id: null, href: null },
+    { name: "Documentação da API", href: `${APP_URL}/docs` },
+    { name: "Falar com o suporte", href: `mailto:${SUPPORT_EMAIL}` },
   ],
 };
 
-const scrollToSection = (id: string | null) => {
-  if (!id) return;
-  document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+const bottomLinks = [
+  { name: "Instagram", href: "https://www.instagram.com/leadsflowapi" },
+  { name: "Facebook", href: "https://www.facebook.com/leadsflowapi" },
+];
+
+const FooterLink = ({ name, href, className }: { name: string; href: string; className: string }) => {
+  // Secção desta página: desliza até lá
+  if (href.startsWith("#")) {
+    return (
+      <a
+        href={href}
+        className={className}
+        onClick={(e) => {
+          e.preventDefault();
+          document.getElementById(href.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }}
+      >
+        {name}
+      </a>
+    );
+  }
+  const external = href.startsWith("http");
+  return (
+    <a href={href} className={className} {...(external ? { target: "_blank", rel: "noreferrer" } : {})}>
+      {name}
+    </a>
+  );
 };
 
 export const Footer = () => {
-  const navigate = useNavigate();
-
   return (
     <footer style={{ background: "hsl(var(--card))", borderTop: "1px solid rgba(255,255,255,0.08)" }}>
-      <div className="container mx-auto px-4 sm:px-6 py-16 md:py-20" style={{ maxWidth: 1280 }}>
+      {/* pb-24 no telemóvel: o botão flutuante do chat não tapa os últimos links */}
+      <div className="container mx-auto px-4 sm:px-6 pt-12 pb-24 md:py-20" style={{ maxWidth: 1280 }}>
 
         {/* Main grid */}
         <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
@@ -62,31 +84,14 @@ export const Footer = () => {
               <h4 className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: "#FFFFFF", letterSpacing: "0.08em" }}>
                 {category}
               </h4>
-              <ul className="space-y-3">
+              <ul className="space-y-1 md:space-y-3">
                 {links.map((link) => (
                   <li key={link.name}>
-                    {link.href ? (
-                      <button
-                        onClick={() => navigate(link.href!)}
-                        className="text-sm text-left transition-colors duration-150"
-                        style={{ color: "rgba(255,255,255,0.45)" }}
-                        onMouseEnter={e => (e.currentTarget.style.color = "#A899FF")}
-                        onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
-                      >
-                        {link.name}
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => scrollToSection(link.id)}
-                        disabled={!link.id}
-                        className="text-sm text-left transition-colors duration-150 disabled:cursor-default"
-                        style={{ color: "#6B7280" }}
-                        onMouseEnter={e => { if (link.id) e.currentTarget.style.color = "#A899FF"; }}
-                        onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.45)")}
-                      >
-                        {link.name}
-                      </button>
-                    )}
+                    <FooterLink
+                      name={link.name}
+                      href={link.href}
+                      className="inline-block py-1.5 text-sm text-white/[0.45] transition-colors duration-150 hover:text-[#A899FF] md:py-0"
+                    />
                   </li>
                 ))}
               </ul>
@@ -96,45 +101,21 @@ export const Footer = () => {
 
         {/* Bottom bar */}
         <div
-          className="mt-14 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4"
+          className="mt-10 md:mt-14 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4"
           style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
         >
           <p className="text-sm order-2 sm:order-1" style={{ color: "rgba(255,255,255,0.35)" }}>
             © {new Date().getFullYear()} LeadsFlow API. Todos os direitos reservados.
           </p>
 
-          <div className="flex items-center gap-6 order-1 sm:order-2">
-            {[
-              { label: "Privacidade", action: () => navigate("/politica") },
-              { label: "Termos",      action: () => navigate("/termos") },
-            ].map(item => (
-              <button
-                key={item.label}
-                onClick={item.action}
-                className="text-sm transition-colors duration-150"
-                style={{ color: "rgba(255,255,255,0.35)" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#A899FF")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
-              >
-                {item.label}
-              </button>
-            ))}
-            {[
-              { label: "Instagram", href: "https://www.instagram.com/leadsflowapi" },
-              { label: "Facebook",  href: "https://www.facebook.com/leadsflowapi" },
-            ].map(item => (
-              <a
-                key={item.label}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="text-sm transition-colors duration-150"
-                style={{ color: "rgba(255,255,255,0.35)" }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#A899FF")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
-              >
-                {item.label}
-              </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 order-1 sm:order-2">
+            {bottomLinks.map((link) => (
+              <FooterLink
+                key={link.name}
+                name={link.name}
+                href={link.href}
+                className="inline-block py-1 text-sm text-white/[0.35] transition-colors duration-150 hover:text-[#A899FF] md:py-0"
+              />
             ))}
           </div>
         </div>

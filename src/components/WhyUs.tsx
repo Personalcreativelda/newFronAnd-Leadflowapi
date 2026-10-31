@@ -4,20 +4,17 @@ const stats = [
   {
     value: 47,
     label: "Aumento na conversão",
-    description:
-      "Leads qualificados automaticamente e abordados no momento certo, por uma IA que entende de resultado.",
+    description: "Leads qualificados e abordados no momento certo.",
   },
   {
     value: 62,
     label: "Redução de custos operacionais",
-    description:
-      "Reduza seu time de atendimento sem perder performance. Automatize o que ninguém consegue escalar no braço.",
+    description: "Automatize o que não escala manualmente.",
   },
   {
     value: 94,
     label: "Leads resolvidos automaticamente",
-    description:
-      "Enquanto você dorme, a LeadsFlow está qualificando, respondendo e aquecendo leads. Sem salário. Sem desculpa.",
+    description: "A LeadsFlow qualifica e responde mesmo enquanto você dorme.",
   },
 ];
 
@@ -65,9 +62,9 @@ const CircleStat = ({ value, label, description }: { value: number; label: strin
   }, [value]);
 
   return (
-    <div ref={ref} className="text-center flex flex-col items-center gap-4" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 5, padding: 32, boxShadow: "0px 1px 2px rgba(0,0,0,0.04)" }}>
+    <div ref={ref} className="flex items-center gap-4 p-5 text-left md:flex-col md:p-8 md:text-center" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 5, boxShadow: "0px 1px 2px rgba(0,0,0,0.04)" }}>
       {/* SVG ring */}
-      <div className="relative w-36 h-36">
+      <div className="relative w-20 h-20 flex-shrink-0 md:w-36 md:h-36">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
           <circle
             cx="50" cy="50" r="45"
@@ -94,45 +91,35 @@ const CircleStat = ({ value, label, description }: { value: number; label: strin
           </defs>
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-3xl font-bold text-foreground">{displayValue}%</span>
+          <span className="text-lg font-bold text-foreground md:text-3xl">{displayValue}%</span>
         </div>
       </div>
 
-      <div className="font-semibold text-foreground text-base">{label}</div>
-      <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      <div className="flex min-w-0 flex-col gap-1 md:gap-4">
+        <div className="font-semibold text-foreground text-base">{label}</div>
+        <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      </div>
     </div>
   );
 };
 
 export const WhyUs = () => {
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden" style={{ background: "hsl(var(--secondary))" }}>
+    <section className="py-12 md:py-24 relative overflow-hidden" style={{ background: "hsl(var(--secondary))" }}>
       <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
         <div className="max-w-5xl mx-auto">
           {/* Top copy */}
-          <div className="grid md:grid-cols-2 gap-8 items-center mb-10">
+          <div className="grid md:grid-cols-2 gap-4 md:gap-8 items-center mb-8 md:mb-10">
             <h2 className="stripe-h2" style={{ color: "hsl(var(--foreground))" }}>
-              Por que a <span className="gradient-text">LeadsFlow API</span>
-              <span className="block">é a escolha definitiva</span>
-              <span className="block">para quem quer crescer?</span>
+              Por que a <span className="gradient-text">LeadsFlow API</span>?
             </h2>
-            <div className="space-y-5 text-muted-foreground">
-              <p>
-                Somos a plataforma mais completa para captura, qualificação e conversão de leads com IA.
-              </p>
-              <p>
-                Criamos um <strong className="text-foreground">sistema que automatiza de verdade</strong>, sem gambiarra,
-                sem planilha, sem depender de alguém lembrando de fazer follow-up.
-              </p>
-              <p>
-                Você tem suporte especializado que configura tudo em tempo recorde.{" "}
-                <strong className="text-foreground">Em menos de 48h sua operação vira uma máquina de conversão</strong>, pronta para vender 24h por dia.
-              </p>
-            </div>
+            <p className="text-muted-foreground">
+              <strong className="text-foreground">Em menos de 48h</strong>, a sua operação fica pronta para vender 24h por dia.
+            </p>
           </div>
 
           {/* Stats grid */}
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-3 md:gap-6">
             {stats.map((s, index) => (
               <div key={s.label} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'both' }}>
                 <CircleStat {...s} />

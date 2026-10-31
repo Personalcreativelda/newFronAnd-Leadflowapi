@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 const LOGIN_URL  = "https://app.leadsflowapi.com/login";
 const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
+const DOCS_URL   = "https://app.leadsflowapi.com/docs";
 
 const navLinks = [
   { name: "Início",   id: "hero" },
@@ -29,7 +30,7 @@ export const Header = () => {
 
   return (
     <header
-      className="fixed top-3 left-0 right-0 z-50"
+      className="fixed top-0 lg:top-3 left-0 right-0 z-50"
       style={{
         background: "rgba(8,8,13,0.75)",
         backdropFilter: "blur(16px)",
@@ -68,6 +69,14 @@ export const Header = () => {
               {link.name}
             </button>
           ))}
+          <a
+            href={DOCS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="px-4 py-1.5 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all duration-150"
+          >
+            Docs
+          </a>
         </nav>
 
         {/* ── Desktop CTAs ── */}
@@ -90,9 +99,10 @@ export const Header = () => {
 
         {/* ── Mobile toggle ── */}
         <button
-          className="lg:hidden p-2 text-white/70 hover:text-white transition-colors"
+          className="lg:hidden -mr-2 flex h-11 w-11 items-center justify-center text-white/70 hover:text-white transition-colors"
           onClick={() => setIsOpen((v) => !v)}
           aria-label="Toggle menu"
+          aria-expanded={isOpen}
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
@@ -101,7 +111,7 @@ export const Header = () => {
       {/* ── Mobile menu ── */}
       {isOpen && (
         <div
-          className="lg:hidden px-4 pb-5 pt-2 border-t"
+          className="lg:hidden max-h-[calc(100svh-3.5rem)] overflow-y-auto px-4 pb-5 pt-2 border-t"
           style={{
             background: "rgba(8,8,13,0.97)",
             backdropFilter: "blur(16px)",
@@ -118,6 +128,15 @@ export const Header = () => {
                 {link.name}
               </button>
             ))}
+            <a
+              href={DOCS_URL}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all text-left px-3 py-2.5 rounded-lg"
+            >
+              Docs
+            </a>
           </nav>
           <div className="flex flex-col gap-2 pt-3 border-t" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
             <button

@@ -12,19 +12,18 @@ const scrollToPlans = () => {
 
 export const CTA = () => {
   return (
-    <section className="py-16 md:py-24 relative overflow-hidden">
+    <section className="py-12 md:py-24 relative overflow-hidden">
       <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
         <div className="relative max-w-4xl mx-auto">
           {/* Glow blur behind card */}
           <div className="absolute inset-0 blur-3xl opacity-30"
             style={{ background: "linear-gradient(135deg, rgba(83,58,253,0.35) 0%, rgba(255,97,24,0.25) 100%)" }} />
 
-          <div className="relative animate-fade-in-up text-center overflow-hidden"
+          <div className="relative animate-fade-in-up text-center overflow-hidden p-6 md:p-12"
             style={{
               background: "hsl(var(--card))",
               border: "1px solid rgba(83,58,253,0.3)",
               borderRadius: 12,
-              padding: "48px",
               boxShadow: "0 0 48px rgba(83,58,253,0.12)",
             }}>
             {/* Corner glows */}
@@ -34,22 +33,17 @@ export const CTA = () => {
               style={{ background: "radial-gradient(circle, rgba(255,97,24,0.35) 0%, transparent 70%)" }} />
 
             <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg mb-8"
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-lg mb-5 md:mb-8"
                 style={{ background: "#533AFD" }}>
-                <Zap className="h-8 w-8 text-white" />
+                <Zap className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
 
-              <h2 className="stripe-h2 mb-6">
+              <h2 className="stripe-h2 mb-6 md:mb-10">
                 Pronto para parar de{" "}
-                <span className="gradient-text">perder leads</span>
-                <span className="block">e começar a fechar mais?</span>
+                <span className="gradient-text">perder leads</span>?
               </h2>
 
-              <p className="text-base text-muted-foreground max-w-xl mx-auto mb-10" style={{ lineHeight: 1.55 }}>
-                Mais de 3.000 empresas já pararam de depender de sorte e passaram a usar dados, automação e IA para crescer. A sua vez.
-              </p>
-
-              <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
                 <Button variant="default" size="lg" className="group w-full sm:w-auto sm:px-8" onClick={scrollToPlans}>
                   Contratar Plano!
                   <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
