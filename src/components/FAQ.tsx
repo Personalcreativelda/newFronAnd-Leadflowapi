@@ -8,27 +8,31 @@ import {
 const faqs = [
   {
     question: "Não sou bom com tecnologia. Vou conseguir usar a LeadsFlow API?",
-    answer: "Sim. A plataforma é simples e nossa equipe de suporte configura tudo em menos de 48h.",
+    answer: "Sim. A plataforma é simples e a nossa equipa de suporte ajuda a configurar tudo em menos de 48h.",
   },
   {
-    question: "Como conecto meus canais à plataforma?",
-    answer: "No painel, abra Integrações, escolha o canal e siga o passo a passo. Para WhatsApp, basta escanear o QR Code.",
+    question: "Como ligo os meus canais?",
+    answer: "No painel, abra Canais e escolha o canal. WhatsApp Business, Instagram e Facebook ligam-se com o login da Meta.",
   },
   {
-    question: "Meu computador precisa ficar ligado?",
-    answer: "Não. A LeadsFlow API roda 100% na nuvem, 24h por dia.",
+    question: "Os agentes de IA podem marcar e desmarcar?",
+    answer: "Sim. Consultam a agenda (incluindo o Google Calendar) antes de propor horários e criam a tarefa sozinhos.",
   },
   {
-    question: "Quantos leads a IA atende ao mesmo tempo?",
-    answer: "Sem limite. A Ava atende centenas de leads em simultâneo, sem fila.",
+    question: "Posso ter vários agentes no mesmo canal?",
+    answer: "Sim. Trabalham em equipa: cada conversa fica com um, que a passa ao colega certo quando é preciso.",
   },
   {
-    question: "Quantos utilizadores podem aceder na mesma conta?",
-    answer: "Os planos incluem 1 utilizador. Para equipas maiores, entre em contacto.",
+    question: "Tem app para telemóvel?",
+    answer: "Sim, app Android incluído. Continua a funcionar sem rede e envia tudo quando a ligação volta.",
+  },
+  {
+    question: "Posso ligar o meu sistema?",
+    answer: "Sim. API pública com tokens, webhooks e documentação em app.leadsflowapi.com/docs.",
   },
   {
     question: "Se eu não gostar, como cancelo?",
-    answer: "Cancele no painel com 1 clique, a qualquer momento e sem multa. Mantém o acesso até o fim do período pago.",
+    answer: "Cancele no painel com 1 clique, a qualquer momento e sem multa. Mantém o acesso até ao fim do período pago.",
   },
 ];
 

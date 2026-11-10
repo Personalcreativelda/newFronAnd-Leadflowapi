@@ -1,42 +1,60 @@
 import {
+  Inbox,
   LayoutDashboard,
+  Megaphone,
+  RefreshCw,
+  Bot,
+  Phone,
+  CalendarCheck,
   LineChart,
-  Zap,
-  Link2,
-  Shield,
   Smartphone,
 } from "lucide-react";
 
 const features = [
   {
+    icon: Inbox,
+    title: "Inbox multicanal",
+    description: "WhatsApp Business, Instagram, Facebook, Telegram, email e chat do site numa só caixa.",
+  },
+  {
     icon: LayoutDashboard,
-    title: "CRM com Kanban",
-    description: "Cada lead avança no funil automaticamente.",
+    title: "Funil de vendas",
+    description: "Kanban com o valor de cada negócio, atualizado pela IA durante a conversa.",
+  },
+  {
+    icon: Megaphone,
+    title: "Campanhas",
+    description: "WhatsApp, email e SMS em massa, com agendamento.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Remarketing automático",
+    description: "Fluxos que recuperam leads parados e respondem a quem volta a falar.",
+  },
+  {
+    icon: Bot,
+    title: "Agentes de vendas IA",
+    description: "Respondem, qualificam, fazem follow-up e trabalham em equipa.",
+  },
+  {
+    icon: Phone,
+    title: "Agentes de voz",
+    description: "Chamadas automáticas e respostas em áudio com voz natural.",
+  },
+  {
+    icon: CalendarCheck,
+    title: "Tarefas e agenda",
+    description: "Marcações, lembretes e Google Calendar sincronizados.",
   },
   {
     icon: LineChart,
-    title: "Analytics em Tempo Real",
-    description: "Saiba qual canal e campanha geram mais receita.",
-  },
-  {
-    icon: Zap,
-    title: "Automação de Funil",
-    description: "Fluxos com gatilhos e follow-ups automáticos.",
-  },
-  {
-    icon: Link2,
-    title: "Integrações Nativas",
-    description: "WhatsApp, Instagram, Facebook, webhooks e mais de 100 ferramentas.",
-  },
-  {
-    icon: Shield,
-    title: "100% LGPD Compliant",
-    description: "Criptografia de ponta a ponta e conformidade legal.",
+    title: "Relatórios",
+    description: "Saiba que canal e campanha trazem mais vendas.",
   },
   {
     icon: Smartphone,
-    title: "App Mobile Incluso",
-    description: "Leads, clientes e métricas no bolso, sem custo extra.",
+    title: "App, API e webhooks",
+    description: "App Android que funciona sem rede, API pública e webhooks.",
   },
 ];
 
@@ -46,7 +64,7 @@ export const Features = () => {
 
       <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="stripe-h2">O fim das limitações</h2>
+          <h2 className="stripe-h2">Tudo num só lugar</h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">

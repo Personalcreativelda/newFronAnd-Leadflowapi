@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
 
 const messages = [
-  { from: "lead", text: "Boa tarde! Como funciona?" },
-  { from: "ai", text: "Olá! Aqui é a Ava, da LeadsFlow. O que mais te interessa: automatizar follow-ups ou ver todos os seus leads num só lugar?" },
-  { from: "lead", text: "Os dois. Tenho leads no WhatsApp e no email e não consigo acompanhar." },
-  { from: "ai", text: "Entendo. Nós centralizamos tudo e a IA faz a qualificação por você." },
+  { from: "lead", text: "Boa tarde! Ainda têm horário esta semana?" },
+  { from: "ai", text: "Olá! Tenho sexta às 10h ou às 15h. Qual prefere?" },
+  { from: "lead", text: "Sexta às 15h." },
+  { from: "ai", text: "Marcado para sexta às 15h ✅ Envio-lhe um lembrete na véspera." },
 ];
 
 export const AIHighlight = () => {
@@ -19,17 +19,17 @@ export const AIHighlight = () => {
             {/* Left: copy */}
             <div>
               <span className="stripe-badge-info mb-4" style={{ display: "inline-block" }}>
-                Atendente IA
+                Agentes de vendas IA
               </span>
               <h2 className="stripe-h2 mb-4 md:mb-6" style={{ color: "hsl(var(--foreground))" }}>
-                Conheça a <span className="gradient-text">Ava</span>
+                Uma equipa de vendas <span className="gradient-text">sempre online</span>
               </h2>
               <div className="space-y-4 text-sm text-muted-foreground mb-6 md:mb-8" style={{ lineHeight: 1.55 }}>
-                <p>Nossa IA transforma leads curiosos em clientes, <strong className="text-foreground">todos os dias, a qualquer hora</strong>.</p>
-                <p>Desempenho até <strong className="text-foreground">11x melhor do que um atendente humano</strong>.</p>
+                <p><strong className="text-foreground">6 especialistas</strong>: primeiro contacto, fecho, marcações, recuperação, pós-venda e cobranças.</p>
+                <p>Passam a conversa entre si, fazem follow-ups e marcam no <strong className="text-foreground">Google Calendar</strong>.</p>
               </div>
               <Button variant="default" size="lg" className="group w-full sm:w-auto" onClick={() => window.location.href = SIGNUP_URL}>
-                Ativar a Ava Agora
+                Criar o meu agente
                 <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
