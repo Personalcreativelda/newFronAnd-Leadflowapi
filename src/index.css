@@ -5,6 +5,8 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* o cabeçalho fixo não tapa o título da secção ao navegar pelos links */
+    scroll-padding-top: 5rem;
   }
 
   /* ── Dark Design System (default) ── */
@@ -25,7 +27,7 @@
     --secondary-foreground: 0 0% 100%;
 
     --muted: 240 5% 12%;
-    --muted-foreground: 0 0% 55%;       /* #8C8C8C */
+    --muted-foreground: 0 0% 66%;       /* #A8A8A8: legível em texto de 14px */
 
     --accent: 19 100% 55%;              /* #FF6118 orange */
     --accent-foreground: 0 0% 100%;
@@ -60,9 +62,17 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-size: 14px;
-    line-height: 21px;
+    font-size: 16px;
+    line-height: 1.5;
     font-weight: 400;
+  }
+
+  /* Foco visível para quem navega com o teclado */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible {
+    outline: 2px solid #A899FF;
+    outline-offset: 2px;
   }
 }
 
@@ -77,9 +87,10 @@
   }
 
   .stripe-h2 {
-    font-size: clamp(26px, 7.5vw, 32px);
-    font-weight: 300;
-    line-height: 1.1;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
     letter-spacing: 0px;
     color: #FFFFFF;
     text-wrap: balance;
@@ -92,26 +103,21 @@
     color: #FFFFFF;
   }
 
-  /* ── Gradient text – purple → orange ── */
-  .gradient-text {
-    background: linear-gradient(135deg, #533AFD 0%, #FF6118 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+  /* Segunda linha de um título: mesmo texto sólido, um tom abaixo */
+  .title-quiet {
+    color: hsl(var(--muted-foreground));
   }
 
   /* ── Dark card ── */
   .stripe-card {
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 32px;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.03) inset;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: border-color 150ms ease-out;
   }
   .stripe-card:hover {
-    border-color: rgba(83, 58, 253, 0.4);
-    box-shadow: 0 0 24px rgba(83, 58, 253, 0.08);
+    border-color: rgba(255, 255, 255, 0.14);
   }
 
   .glass-card {
@@ -236,92 +242,12 @@
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Quem pede menos movimento no sistema não vê animações nem deslizes */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
-
-@keyframes gradient {
-  0%, 100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.5;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-}
-
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.8s ease-out forwards;
-}
-
-.animate-slide-left {
-  animation: slide-in-left 0.8s ease-out forwards;
-}
-
-.animate-slide-right {
-  animation: slide-in-right 0.8s ease-out forwards;
-}
-
-.animate-gradient {
-  animation: gradient 4s linear infinite;
-}
-
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }

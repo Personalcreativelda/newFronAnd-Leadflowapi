@@ -1,42 +1,33 @@
-import { XCircle } from "lucide-react";
+import { X } from "lucide-react";
 
 const painPoints = [
-  "Leads chegando mas ninguém responde a tempo",
-  "Perda de clientes por falta de follow-up",
-  "Dados de leads espalhados em planilhas e chats",
-  "Sem ideia de onde vêm os leads que convertem",
-  "Atendimento manual que não escala",
-  "CRM caro, complicado ou que ninguém usa",
+  "Chegam leads e ninguém responde a tempo",
+  "Clientes perdidos por falta de follow-up",
+  "Contactos espalhados por folhas de cálculo e chats",
+  "Não sabe de onde vêm os leads que compram",
+  "Atendimento manual que não acompanha o crescimento",
+  "Um CRM caro, complicado ou que ninguém usa",
 ];
 
 export const PainPoints = () => {
   return (
-    <section className="py-12 md:py-24 relative overflow-hidden" style={{ background: "hsl(var(--secondary))" }}>
-      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
+    <section className="relative py-16 md:py-24" style={{ background: "hsl(var(--secondary))" }}>
+      <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
 
-        {/* Title only */}
-        <div className="text-center mb-8">
-          <h2 className="stripe-h2 mb-0">
-            Você tem algum desses{" "}
-            <span className="gradient-text">desafios</span>
-            <span className="block">na sua empresa?</span>
-          </h2>
-        </div>
+        <h2 className="stripe-h2 mx-auto mb-8 max-w-2xl text-center md:mb-12">
+          Algum destes problemas
+          <span className="title-quiet block">acontece na sua empresa?</span>
+        </h2>
 
-        {/* Pain points card */}
-        <div className="max-w-4xl mx-auto stripe-card p-5 md:p-8">
-          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
-            {painPoints.map((point, index) => (
-              <div
-                key={point}
-                className="flex items-start gap-3 animate-fade-in-up"
-                style={{ animationDelay: `${index * 80}ms`, animationFillMode: "both" }}
-              >
-                <XCircle className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: "#FF6118" }} />
-                <span className="text-sm text-muted-foreground">{point}</span>
-              </div>
+        <div className="stripe-card mx-auto max-w-4xl p-6 md:p-8">
+          <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+            {painPoints.map((point) => (
+              <li key={point} className="flex items-start gap-3">
+                <X className="mt-0.5 h-[18px] w-[18px] flex-shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
+                <span className="text-base text-muted-foreground">{point}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
 
       </div>

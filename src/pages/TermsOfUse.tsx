@@ -14,10 +14,10 @@ export default function TermsOfUse() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="container mx-auto px-4 h-16 flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+          <div className="flex h-7 w-7 items-center justify-center rounded-xl bg-[#533AFD]">
             <Zap className="h-4 w-4 text-primary-foreground" />
           </div>
-          <span className="font-bold text-foreground">LeadsFlow</span>
+          <span className="font-medium text-foreground">LeadsFlow</span>
         </div>
       </header>
 
@@ -25,27 +25,27 @@ export default function TermsOfUse() {
       <main className="container mx-auto px-4 py-16 max-w-3xl">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-8"
+          className="-ml-2 mb-8 flex h-11 items-center gap-2 rounded-xl px-2 text-muted-foreground transition-colors hover:text-foreground"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Voltar
         </button>
         <div className="mb-10">
-          <h1 className="text-4xl font-bold mb-3">Termos de Uso</h1>
+          <h1 className="mb-3 text-3xl font-medium tracking-tight md:text-4xl">Termos de Uso</h1>
           <p className="text-muted-foreground text-sm">Última atualização: 16 de Abril de 2026</p>
         </div>
 
         <div className="prose prose-invert max-w-none space-y-8 text-muted-foreground leading-relaxed">
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">1. Aceitação dos Termos</h2>
+            <h2 className="text-xl font-medium text-foreground">1. Aceitação dos Termos</h2>
             <p>
               Ao aceder, registar-se ou utilizar a plataforma <strong className="text-foreground">LeadsFlow</strong> ("Plataforma"), o utilizador ("você" ou "Cliente") concorda integralmente com estes Termos de Uso. Caso não concorde, deverá cessar imediatamente o uso da Plataforma.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">2. Descrição do Serviço</h2>
+            <h2 className="text-xl font-medium text-foreground">2. Descrição do Serviço</h2>
             <p>
               A LeadsFlow é uma plataforma SaaS de gestão de leads, automação de vendas e CRM com inteligência artificial. Os nossos serviços incluem, sem limitação:
             </p>
@@ -60,7 +60,7 @@ export default function TermsOfUse() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">3. Cadastro e Conta</h2>
+            <h2 className="text-xl font-medium text-foreground">3. Cadastro e Conta</h2>
             <p>
               Para utilizar a Plataforma, é necessário criar uma conta fornecendo informações verdadeiras, completas e atualizadas. Você é responsável por:
             </p>
@@ -75,7 +75,7 @@ export default function TermsOfUse() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">4. Planos e Pagamentos</h2>
+            <h2 className="text-xl font-medium text-foreground">4. Planos e Pagamentos</h2>
             <ul className="list-disc pl-6 space-y-2">
               <li>Os planos e respetivos preços estão disponíveis na página de <a href="/#planos" className="text-primary hover:underline">Planos</a>;</li>
               <li>Os pagamentos são processados de forma segura por gateways certificados;</li>
@@ -86,7 +86,7 @@ export default function TermsOfUse() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">5. Uso Aceitável</h2>
+            <h2 className="text-xl font-medium text-foreground">5. Uso Aceitável</h2>
             <p>Ao utilizar a Plataforma, você compromete-se a não:</p>
             <ul className="list-disc pl-6 space-y-2">
               <li>Violar qualquer lei ou regulamento aplicável, incluindo legislação de proteção de dados (LGPD);</li>
@@ -99,56 +99,56 @@ export default function TermsOfUse() {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">6. Propriedade Intelectual</h2>
+            <h2 className="text-xl font-medium text-foreground">6. Propriedade Intelectual</h2>
             <p>
               Todo o conteúdo, software, marcas, logótipos e interfaces da Plataforma são propriedade exclusiva da LeadsFlow e estão protegidos por leis de propriedade intelectual. É concedida ao Cliente uma licença limitada, não exclusiva e intransmissível para utilizar a Plataforma exclusivamente para os fins previstos nestes Termos.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">7. Dados do Cliente</h2>
+            <h2 className="text-xl font-medium text-foreground">7. Dados do Cliente</h2>
             <p>
               Os dados introduzidos pelo Cliente na Plataforma (leads, contactos, conversas) pertencem ao Cliente. A LeadsFlow trata esses dados na qualidade de operador, conforme descrito na nossa <a href="/politica" className="text-primary hover:underline">Política de Privacidade</a>, agindo sempre segundo as instruções do Cliente e em conformidade com a LGPD.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">8. Disponibilidade e SLA</h2>
+            <h2 className="text-xl font-medium text-foreground">8. Disponibilidade e SLA</h2>
             <p>
               A LeadsFlow empenha-se em garantir a disponibilidade da Plataforma com um objetivo de <strong className="text-foreground">99,5% de uptime mensal</strong>. Reservamo-nos o direito de realizar manutenções programadas, com aviso prévio sempre que possível. Não garantimos disponibilidade ininterrupta e não nos responsabilizamos por interrupções causadas por terceiros, força maior ou falhas de infraestrutura fora do nosso controlo.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">9. Limitação de Responsabilidade</h2>
+            <h2 className="text-xl font-medium text-foreground">9. Limitação de Responsabilidade</h2>
             <p>
               Na máxima extensão permitida por lei, a LeadsFlow não será responsável por danos indiretos, incidentais, especiais ou consequentes, incluindo perda de lucros, dados ou oportunidades de negócio, decorrentes do uso ou da impossibilidade de uso da Plataforma. A nossa responsabilidade total nunca excederá o valor pago pelo Cliente nos últimos 3 meses de serviço.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">10. Rescisão</h2>
+            <h2 className="text-xl font-medium text-foreground">10. Rescisão</h2>
             <p>
               A LeadsFlow pode suspender ou encerrar a sua conta imediatamente, sem aviso prévio, em caso de violação destes Termos, atividade fraudulenta ou ilegal, ou falta de pagamento. Após a rescisão, os seus dados serão retidos conforme descrito na Política de Privacidade e posteriormente eliminados.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">11. Alterações aos Termos</h2>
+            <h2 className="text-xl font-medium text-foreground">11. Alterações aos Termos</h2>
             <p>
               Podemos rever estes Termos periodicamente. Notificaremos sobre alterações materiais com pelo menos <strong className="text-foreground">15 dias de antecedência</strong> por e-mail ou aviso na Plataforma. O uso continuado após esse prazo constitui aceitação dos novos Termos.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">12. Lei Aplicável e Foro</h2>
+            <h2 className="text-xl font-medium text-foreground">12. Lei Aplicável e Foro</h2>
             <p>
               Estes Termos são regidos pelas leis da República Federativa do Brasil. Para a resolução de qualquer litígio decorrente destes Termos, fica eleito o foro da comarca de São Paulo — SP, com exclusão de qualquer outro, por mais privilegiado que seja.
             </p>
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-semibold text-foreground">13. Contacto</h2>
+            <h2 className="text-xl font-medium text-foreground">13. Contacto</h2>
             <p>
               Para questões relacionadas com estes Termos, entre em contacto connosco:
             </p>

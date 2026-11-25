@@ -1,17 +1,16 @@
-import { Check, Sparkles } from "lucide-react";
+import { DoubleCheck } from "./DoubleCheck";
 import { Button } from "@/components/ui/button";
 
 const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
-const DASHBOARD_URL = "https://app.leadsflowapi.com/dashboard";
 
 const plans = [
   {
     name: "Free",
     price: "0",
     popular: false,
-    ctaLabel: "Plano Gratuito",
-    ctaDisabled: true,
-    ctaUrl: DASHBOARD_URL,
+    ctaLabel: "Começar grátis",
+    ctaDisabled: false,
+    ctaUrl: SIGNUP_URL,
     features: [
       "Até 100 leads",
       "100 mensagens individuais/mês",
@@ -25,7 +24,7 @@ const plans = [
     name: "Business",
     price: "20",
     popular: true,
-    ctaLabel: "Selecionar Plano",
+    ctaLabel: "Escolher plano",
     ctaDisabled: false,
     ctaUrl: SIGNUP_URL,
     features: [
@@ -46,7 +45,7 @@ const plans = [
     name: "Enterprise",
     price: "40",
     popular: false,
-    ctaLabel: "Selecionar Plano",
+    ctaLabel: "Escolher plano",
     ctaDisabled: false,
     ctaUrl: SIGNUP_URL,
     features: [
@@ -57,7 +56,7 @@ const plans = [
       "Tudo do Business, mais:",
       "Agentes de voz ilimitados",
       "Gerente de sucesso dedicado",
-      "SLA garantido 99.9%",
+      "SLA garantido de 99,9%",
       "Suporte prioritário 24/7",
       "Onboarding personalizado",
     ],
@@ -66,68 +65,52 @@ const plans = [
 
 export const Pricing = () => {
   return (
-    <section id="planos" className="py-12 md:py-24 relative overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "linear-gradient(135deg, rgba(255,97,24,0.04) 0%, rgba(83,58,253,0.04) 100%)" }}
-      />
-
-      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
-        <div className="text-center mb-10">
+    <section id="planos" className="relative py-16 md:py-24">
+      <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
+        <div className="mb-10 text-center md:mb-12">
           <h2 className="stripe-h2 mb-4">
-            Invista menos do que um funcionário.
-            <span className="block gradient-text">Produza muito mais.</span>
+            Custa menos do que um funcionário
+            <span className="title-quiet block">e produz muito mais</span>
           </h2>
-          <p className="text-base text-muted-foreground max-w-2xl mx-auto" style={{ lineHeight: 1.55 }}>
-            Comece grátis, sem cartão de crédito.
-          </p>
+          <p className="text-base text-muted-foreground">Comece grátis, sem cartão de crédito</p>
         </div>
 
         {/* Empilhado até lg, com o plano mais popular primeiro */}
-        <div className="grid lg:grid-cols-3 gap-8 max-w-md lg:max-w-5xl mx-auto lg:px-4">
-          {plans.map((plan, index) => (
+        <div className="mx-auto grid max-w-md gap-6 lg:max-w-5xl lg:grid-cols-3">
+          {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative flex flex-col animate-fade-in-up p-6 lg:p-8 ${plan.popular ? "order-first lg:order-none" : ""}`}
-              style={{
-                background: plan.popular ? "rgba(83,58,253,0.08)" : "hsl(var(--card))",
-                border: plan.popular ? "1px solid rgba(83,58,253,0.5)" : "1px solid hsl(var(--border))",
-                borderRadius: 8,
-                boxShadow: plan.popular
-                  ? "0 0 32px rgba(83, 58, 253, 0.15)"
-                  : "0 1px 3px rgba(0,0,0,0.3)",
-                animationDelay: `${index * 150}ms`,
-                animationFillMode: "both",
-              }}
+              className={`relative flex flex-col rounded-2xl border p-6 lg:p-8 ${
+                plan.popular
+                  ? "order-first border-[rgba(168,153,255,0.45)] bg-[hsl(240_6%_11%)] lg:order-none"
+                  : "border-border bg-card"
+              }`}
             >
-              {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="inline-flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium text-white"
-                    style={{ background: "linear-gradient(135deg, #533AFD 0%, #FF6118 100%)", borderRadius: 4 }}>
-                    <Sparkles className="h-4 w-4" />
-                    Mais Popular
-                  </div>
+              <div className="mb-6 lg:mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h3 className="text-lg font-medium text-foreground">{plan.name}</h3>
+                  {plan.popular && (
+                    <span className="rounded-md bg-[#533AFD] px-2 py-0.5 text-xs font-medium text-white">Mais popular</span>
+                  )}
                 </div>
-              )}
-
-              <div className="text-center mb-6 lg:mb-8">
-                <h3 className="text-lg font-semibold text-white mb-4">{plan.name}</h3>
-                <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-sm text-muted-foreground">USD</span>
-                  <span className="text-5xl font-light text-white">{plan.price}</span>
-                  <span className="text-muted-foreground text-sm">/mês</span>
+                <div className="flex items-baseline gap-1.5">
+                  <span className="text-5xl font-normal tabular-nums tracking-tight text-foreground">{plan.price}</span>
+                  <span className="text-sm text-muted-foreground">USD/mês</span>
                 </div>
               </div>
 
-              <ul className="space-y-3 lg:space-y-4 mb-6 lg:mb-8">
-                {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3 lg:items-center">
-                    <div className="flex-shrink-0 w-5 h-5 flex items-center justify-center"
-                      style={{ background: "rgba(83,58,253,0.15)", borderRadius: "50%" }}>
-                      <Check className="h-3 w-3" style={{ color: "#A899FF" }} />
-                    </div>
-                    <span className="text-sm text-muted-foreground">{feature}</span>
-                  </li>
-                ))}
+              <ul className="mb-8 flex-1 space-y-3">
+                {plan.features.map((feature) =>
+                  feature.endsWith(":") ? (
+                    // Subtítulo da lista, não um recurso
+                    <li key={feature} className="pt-2 text-sm font-medium text-foreground">{feature}</li>
+                  ) : (
+                    <li key={feature} className="flex items-start gap-3">
+                      <DoubleCheck className="mt-1" />
+                      <span className="text-sm text-muted-foreground">{feature}</span>
+                    </li>
+                  )
+                )}
               </ul>
 
               <Button
@@ -135,7 +118,7 @@ export const Pricing = () => {
                 className="w-full"
                 size="lg"
                 disabled={plan.ctaDisabled}
-                onClick={() => window.location.href = plan.ctaUrl}
+                onClick={() => (window.location.href = plan.ctaUrl)}
               >
                 {plan.ctaLabel}
               </Button>

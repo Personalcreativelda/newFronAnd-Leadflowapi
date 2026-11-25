@@ -1,58 +1,30 @@
-import { ArrowRight, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const DASHBOARD_URL = "https://app.leadsflowapi.com/dashboard";
+const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
 
 const scrollToPlans = () => {
-  const element = document.getElementById("planos");
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  document.getElementById("planos")?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
 export const CTA = () => {
   return (
-    <section className="py-12 md:py-24 relative overflow-hidden">
+    <section className="relative py-16 md:py-24">
       <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
-        <div className="relative max-w-4xl mx-auto">
-          {/* Glow blur behind card */}
-          <div className="absolute inset-0 blur-3xl opacity-30"
-            style={{ background: "linear-gradient(135deg, rgba(83,58,253,0.35) 0%, rgba(255,97,24,0.25) 100%)" }} />
+        <div className="stripe-card mx-auto max-w-4xl p-8 text-center md:p-16">
+          <h2 className="stripe-h2 mx-auto mb-4 max-w-xl">Pronto para deixar de perder leads?</h2>
+          <p className="mx-auto mb-8 max-w-md text-base text-muted-foreground md:mb-10">
+            Ligue o WhatsApp e os outros canais e deixe a IA responder desde o primeiro dia.
+          </p>
 
-          <div className="relative animate-fade-in-up text-center overflow-hidden p-6 md:p-12"
-            style={{
-              background: "hsl(var(--card))",
-              border: "1px solid rgba(83,58,253,0.3)",
-              borderRadius: 12,
-              boxShadow: "0 0 48px rgba(83,58,253,0.12)",
-            }}>
-            {/* Corner glows */}
-            <div className="absolute top-0 left-0 w-40 h-40 opacity-30 pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(83,58,253,0.4) 0%, transparent 70%)" }} />
-            <div className="absolute bottom-0 right-0 w-48 h-48 opacity-30 pointer-events-none"
-              style={{ background: "radial-gradient(circle, rgba(255,97,24,0.35) 0%, transparent 70%)" }} />
-
-            <div className="relative z-10">
-              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-lg mb-5 md:mb-8"
-                style={{ background: "#533AFD" }}>
-                <Zap className="h-6 w-6 md:h-8 md:w-8 text-white" />
-              </div>
-
-              <h2 className="stripe-h2 mb-6 md:mb-10">
-                Pronto para parar de{" "}
-                <span className="gradient-text">perder leads</span>?
-              </h2>
-
-              <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
-                <Button variant="default" size="lg" className="group w-full sm:w-auto sm:px-8" onClick={scrollToPlans}>
-                  Contratar Plano!
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </Button>
-                <Button variant="outline" size="lg" className="w-full sm:w-auto" onClick={() => window.location.href = DASHBOARD_URL}>
-                  Teste grátis
-                </Button>
-              </div>
-            </div>
+          <div className="flex flex-col justify-center gap-3 sm:flex-row">
+            <Button size="lg" className="group w-full sm:w-auto" onClick={() => (window.location.href = SIGNUP_URL)}>
+              Começar grátis
+              <ArrowRight className="transition-transform duration-150 group-hover:translate-x-0.5" />
+            </Button>
+            <Button variant="outline" size="lg" className="w-full sm:w-auto" onClick={scrollToPlans}>
+              Ver planos
+            </Button>
           </div>
         </div>
       </div>

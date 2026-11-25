@@ -3,126 +3,76 @@ import React, { useEffect, useState } from "react";
 const stats = [
   {
     value: 47,
-    label: "Aumento na conversão",
-    description: "Leads qualificados e abordados no momento certo.",
+    label: "mais conversão",
+    description: "Face a antes da LeadsFlow. Leads qualificados e abordados no momento certo.",
   },
   {
     value: 62,
-    label: "Redução de custos operacionais",
-    description: "Automatize o que não escala manualmente.",
+    label: "menos custos operacionais",
+    description: "Face a antes da LeadsFlow. A IA faz o trabalho repetitivo.",
   },
   {
     value: 94,
-    label: "Leads resolvidos automaticamente",
-    description: "A LeadsFlow qualifica e responde mesmo enquanto você dorme.",
+    label: "dos leads resolvidos sem intervenção",
+    description: "A IA qualifica e responde, mesmo de madrugada.",
   },
 ];
 
-const CircleStat = ({ value, label, description }: { value: number; label: string; description: string }) => {
-  const [displayValue, setDisplayValue] = useState(0);
-  const circumference = 2 * Math.PI * 45; // Increased radius
-  const offset = circumference - (displayValue / 100) * circumference;
-  const ref = React.useRef<HTMLDivElement>(null);
+// Número que conta até ao valor quando entra no ecrã
+const CountUp = ({ value }: { value: number }) => {
+  const [display, setDisplay] = useState(0);
+  const ref = React.useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    let frame = 0;
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
-          let start = 0;
-          const end = value;
-          const duration = 1000; // Animation duration in ms
-          const increment = end / (duration / 16); // ~60fps
-
-          const timer = setInterval(() => {
-            start += increment;
-            if (start >= end) {
-              setDisplayValue(end);
-              clearInterval(timer);
-            } else {
-              setDisplayValue(Math.ceil(start));
-            }
-          }, 16);
-
-          return () => clearInterval(timer);
+        if (!entries[0].isIntersecting) return;
+        observer.disconnect();
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          setDisplay(value);
+          return;
         }
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / 900, 1);
+          setDisplay(Math.round(value * (1 - Math.pow(1 - t, 3))));
+          if (t < 1) frame = requestAnimationFrame(tick);
+        };
+        frame = requestAnimationFrame(tick);
       },
-      { threshold: 0.1 }
+      { threshold: 0.3 }
     );
-
-    const currentRef = ref.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      observer.disconnect();
+      cancelAnimationFrame(frame);
     };
   }, [value]);
 
-  return (
-    <div ref={ref} className="flex items-center gap-4 p-5 text-left md:flex-col md:p-8 md:text-center" style={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 5, boxShadow: "0px 1px 2px rgba(0,0,0,0.04)" }}>
-      {/* SVG ring */}
-      <div className="relative w-20 h-20 flex-shrink-0 md:w-36 md:h-36">
-        <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
-          <circle
-            cx="50" cy="50" r="45"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="10"
-            className="text-secondary"
-          />
-          <circle
-            cx="50" cy="50" r="45"
-            fill="none"
-            stroke="url(#grad)"
-            strokeWidth="10"
-            strokeLinecap="round"
-            strokeDasharray={circumference}
-            strokeDashoffset={offset}
-            style={{ transition: "stroke-dashoffset 1s ease-out" }}
-          />
-          <defs>
-            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#533AFD" />
-              <stop offset="100%" stopColor="#FF6118" />
-            </linearGradient>
-          </defs>
-        </svg>
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-lg font-bold text-foreground md:text-3xl">{displayValue}%</span>
-        </div>
-      </div>
-
-      <div className="flex min-w-0 flex-col gap-1 md:gap-4">
-        <div className="font-semibold text-foreground text-base">{label}</div>
-        <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-      </div>
-    </div>
-  );
+  return <span ref={ref}>{display}%</span>;
 };
 
 export const WhyUs = () => {
   return (
-    <section className="py-12 md:py-24 relative overflow-hidden" style={{ background: "hsl(var(--secondary))" }}>
-      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
-        <div className="max-w-5xl mx-auto">
-          {/* Top copy */}
-          <div className="grid md:grid-cols-2 gap-4 md:gap-8 items-center mb-8 md:mb-10">
-            <h2 className="stripe-h2" style={{ color: "hsl(var(--foreground))" }}>
-              Por que a <span className="gradient-text">LeadsFlow API</span>?
-            </h2>
-            <p className="text-muted-foreground">
-              <strong className="text-foreground">Em menos de 48h</strong>, a sua operação fica pronta para vender 24h por dia.
+    <section className="relative py-16 md:py-24" style={{ background: "hsl(var(--secondary))" }}>
+      <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
+        <div className="mx-auto max-w-5xl">
+          <div className="mb-10 grid items-end gap-4 md:mb-12 md:grid-cols-2 md:gap-8">
+            <h2 className="stripe-h2">Porquê a LeadsFlow API?</h2>
+            <p className="text-base text-muted-foreground">
+              <strong className="font-medium text-foreground">Em menos de 48h</strong>, a sua operação fica pronta para vender 24 horas por dia.
             </p>
           </div>
 
-          {/* Stats grid */}
-          <div className="grid md:grid-cols-3 gap-3 md:gap-6">
-            {stats.map((s, index) => (
-              <div key={s.label} className="animate-fade-in-up" style={{ animationDelay: `${index * 150}ms`, animationFillMode: 'both' }}>
-                <CircleStat {...s} />
+          <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+            {stats.map((s) => (
+              <div key={s.label} className="stripe-card p-6 md:p-8">
+                <div className="text-5xl font-normal tabular-nums tracking-tight text-foreground md:text-6xl">
+                  <CountUp value={s.value} />
+                </div>
+                <div className="mt-2 text-base font-medium text-foreground">{s.label}</div>
+                <p className="mt-3 text-sm text-muted-foreground">{s.description}</p>
               </div>
             ))}
           </div>

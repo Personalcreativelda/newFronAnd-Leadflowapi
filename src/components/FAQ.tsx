@@ -23,8 +23,8 @@ const faqs = [
     answer: "Sim. Trabalham em equipa: cada conversa fica com um, que a passa ao colega certo quando é preciso.",
   },
   {
-    question: "Tem app para telemóvel?",
-    answer: "Sim, app Android incluído. Continua a funcionar sem rede e envia tudo quando a ligação volta.",
+    question: "Há app para telemóvel?",
+    answer: "Sim, a app Android está incluída. Continua a funcionar sem rede e envia tudo quando a ligação volta.",
   },
   {
     question: "Posso ligar o meu sistema?",
@@ -39,13 +39,10 @@ const faqs = [
 
 export const FAQ = () => {
   return (
-    <section id="faq" className="py-12 md:py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4 relative z-10" style={{ maxWidth: 1280 }}>
+    <section id="faq" className="relative py-16 md:py-24">
+      <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="stripe-h2" style={{ color: "hsl(var(--foreground))" }}>
-            Ainda com{" "}
-            <span className="gradient-text">dúvidas?</span>
-          </h2>
+          <h2 className="stripe-h2">Ainda com dúvidas?</h2>
         </div>
 
         <div className="max-w-3xl mx-auto">
@@ -54,19 +51,12 @@ export const FAQ = () => {
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="animate-fade-in-up px-4 md:px-6"
-                style={{
-                  background: "hsl(var(--card))",
-                  border: "1px solid #D4DEE9",
-                  borderRadius: 5,
-                  animationDelay: `${index * 100}ms`,
-                  animationFillMode: 'both',
-                }}
+                className="rounded-2xl border border-border bg-card px-5 md:px-6"
               >
-                <AccordionTrigger className="text-left text-foreground hover:text-[#533AFD] hover:no-underline py-4 md:py-5 text-sm font-normal">
+                <AccordionTrigger className="text-left text-foreground hover:text-[#A899FF] hover:no-underline py-5 text-base font-normal">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground pb-5" style={{ lineHeight: 1.55 }}>
+                <AccordionContent className="pb-5 text-base leading-relaxed text-muted-foreground">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

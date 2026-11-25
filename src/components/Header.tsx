@@ -45,7 +45,7 @@ export const Header = () => {
           onClick={() => scrollToSection("hero")}
           className="flex items-center gap-2.5 group flex-shrink-0"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-md" style={{ background: "#533AFD" }}>
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: "#533AFD" }}>
             <Zap className="h-4 w-4 text-white" />
           </div>
           <span className="text-sm font-semibold text-white transition-opacity group-hover:opacity-75">
@@ -54,7 +54,7 @@ export const Header = () => {
         </button>
 
         {/* ── Desktop nav — pill container ── */}
-        <nav className="hidden lg:flex items-center gap-0.5 rounded-full border px-2 py-1.5 transition-all duration-300"
+        <nav className="hidden lg:flex items-center gap-0.5 rounded-full border px-2 py-1.5 transition-colors duration-300"
           style={{
             borderColor: scrolled ? "rgba(255,255,255,0.1)" : "rgba(255,255,255,0.15)",
             background:  scrolled ? "rgba(255,255,255,0.04)" : "rgba(255,255,255,0.05)",
@@ -64,7 +64,7 @@ export const Header = () => {
             <button
               key={link.name}
               onClick={() => scrollToSection(link.id)}
-              className="px-4 py-1.5 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all duration-150"
+              className="px-4 py-1.5 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-150"
             >
               {link.name}
             </button>
@@ -73,7 +73,7 @@ export const Header = () => {
             href={DOCS_URL}
             target="_blank"
             rel="noreferrer"
-            className="px-4 py-1.5 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all duration-150"
+            className="px-4 py-1.5 rounded-full text-sm text-white/70 hover:text-white hover:bg-white/10 transition-colors duration-150"
           >
             Docs
           </a>
@@ -87,13 +87,8 @@ export const Header = () => {
           >
             Entrar
           </button>
-          <Button
-            size="default"
-            onClick={() => (window.location.href = SIGNUP_URL)}
-            style={{ background: "#533AFD" }}
-            className="hover:opacity-90 transition-opacity"
-          >
-            Começar Grátis
+          <Button size="sm" onClick={() => (window.location.href = SIGNUP_URL)}>
+            Começar grátis
           </Button>
         </div>
 
@@ -101,7 +96,7 @@ export const Header = () => {
         <button
           className="lg:hidden -mr-2 flex h-11 w-11 items-center justify-center text-white/70 hover:text-white transition-colors"
           onClick={() => setIsOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
           aria-expanded={isOpen}
         >
           {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -123,7 +118,7 @@ export const Header = () => {
               <button
                 key={link.name}
                 onClick={() => { scrollToSection(link.id); setIsOpen(false); }}
-                className="text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all text-left px-3 py-2.5 rounded-lg"
+                className="text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors text-left px-3 py-2.5 rounded-lg"
               >
                 {link.name}
               </button>
@@ -133,7 +128,7 @@ export const Header = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => setIsOpen(false)}
-              className="text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all text-left px-3 py-2.5 rounded-lg"
+              className="text-sm text-white/70 hover:text-white hover:bg-white/5 transition-colors text-left px-3 py-2.5 rounded-lg"
             >
               Docs
             </a>
@@ -149,9 +144,8 @@ export const Header = () => {
               size="default"
               className="w-full"
               onClick={() => (window.location.href = SIGNUP_URL)}
-              style={{ background: "#533AFD" }}
             >
-              Começar Grátis
+              Começar grátis
             </Button>
           </div>
         </div>

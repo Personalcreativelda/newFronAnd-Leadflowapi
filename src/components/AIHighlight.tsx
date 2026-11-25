@@ -1,87 +1,77 @@
 import { Bot, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { DoubleCheck } from "./DoubleCheck";
 
 const SIGNUP_URL = "https://app.leadsflowapi.com/signup";
 
+// Uma conversa real de marcação; do lado da empresa (direita) responde a Ava
 const messages = [
-  { from: "lead", text: "Boa tarde! Ainda têm horário esta semana?" },
-  { from: "ai", text: "Olá! Tenho sexta às 10h ou às 15h. Qual prefere?" },
-  { from: "lead", text: "Sexta às 15h." },
-  { from: "ai", text: "Marcado para sexta às 15h ✅ Envio-lhe um lembrete na véspera." },
+  { from: "lead", text: "Boa tarde! Ainda têm horário esta semana?", time: "23:14" },
+  { from: "ai", text: "Olá! Tenho sexta às 10h ou às 15h. Qual prefere?", time: "23:14" },
+  { from: "lead", text: "Sexta às 15h.", time: "23:16" },
+  { from: "ai", text: "Marcado para sexta às 15h. Envio-lhe um lembrete na véspera.", time: "23:16" },
 ];
 
 export const AIHighlight = () => {
   return (
-    <section className="py-12 md:py-24 relative overflow-hidden">
+    <section className="relative py-16 md:py-24">
       <div className="container mx-auto px-4" style={{ maxWidth: 1280 }}>
-        <div className="max-w-5xl mx-auto stripe-card p-5 md:p-12">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            {/* Left: copy */}
+        <div className="stripe-card mx-auto max-w-5xl p-6 md:p-12">
+          <div className="grid items-center gap-10 md:grid-cols-2">
+
             <div>
-              <span className="stripe-badge-info mb-4" style={{ display: "inline-block" }}>
-                Agentes de vendas IA
-              </span>
-              <h2 className="stripe-h2 mb-4 md:mb-6" style={{ color: "hsl(var(--foreground))" }}>
-                Uma equipa de vendas <span className="gradient-text">sempre online</span>
+              <p className="mb-4 text-sm font-medium text-[#A899FF]">Agentes de vendas IA</p>
+              <h2 className="stripe-h2 mb-6">
+                Uma equipa de vendas
+                <span className="title-quiet block">sempre online</span>
               </h2>
-              <div className="space-y-4 text-sm text-muted-foreground mb-6 md:mb-8" style={{ lineHeight: 1.55 }}>
-                <p><strong className="text-foreground">6 especialistas</strong>: primeiro contacto, fecho, marcações, recuperação, pós-venda e cobranças.</p>
-                <p>Passam a conversa entre si, fazem follow-ups e marcam no <strong className="text-foreground">Google Calendar</strong>.</p>
+              <div className="mb-8 space-y-4 text-base text-muted-foreground">
+                <p><strong className="font-medium text-foreground">6 especialistas</strong>: primeiro contacto, fecho, marcações, recuperação, pós-venda e cobranças.</p>
+                <p>Passam a conversa entre si, fazem follow-ups e marcam no <strong className="font-medium text-foreground">Google Calendar</strong>.</p>
               </div>
-              <Button variant="default" size="lg" className="group w-full sm:w-auto" onClick={() => window.location.href = SIGNUP_URL}>
+              <Button size="lg" className="group w-full sm:w-auto" onClick={() => (window.location.href = SIGNUP_URL)}>
                 Criar o meu agente
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="transition-transform duration-150 group-hover:translate-x-0.5" />
               </Button>
             </div>
 
-            {/* Right: mock chat */}
-            <div className="overflow-hidden" style={{ border: "1px solid hsl(var(--border))", borderRadius: 5 }}>
-              {/* Chat header */}
-              <div className="flex items-center gap-3 px-5 py-4" style={{ background: "hsl(var(--secondary))", borderBottom: "1px solid hsl(var(--border))" }}>
-                <div className="flex h-9 w-9 items-center justify-center rounded-sm" style={{ background: "#533AFD" }}>
-                  <Bot className="h-5 w-5 text-white" />
+            {/* Conversa de exemplo */}
+            <div className="overflow-hidden rounded-2xl border border-border bg-background">
+              <div className="flex items-center gap-3 border-b border-border bg-secondary px-5 py-4">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#533AFD]">
+                  <Bot className="h-[18px] w-[18px] text-white" strokeWidth={1.5} aria-hidden="true" />
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-foreground">Ava</div>
-                  <div className="flex items-center gap-1">
-                    <div className="h-1.5 w-1.5 rounded-full" style={{ background: "#22c55e" }} />
-                    <span className="text-xs text-muted-foreground">Online agora</span>
+                  <div className="text-sm font-medium text-foreground">Ava</div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#22c55e]" aria-hidden="true" />
+                    <span className="text-xs text-muted-foreground">Online</span>
                   </div>
                 </div>
               </div>
 
-              {/* Messages */}
-              <div className="p-4 md:p-5 space-y-3">
-                {messages.map((msg, i) => (
-                  <div key={i} className={`flex ${msg.from === "lead" ? "justify-end" : "justify-start"}`}>
-                    <div
-                      className="max-w-[88%] md:max-w-[80%] px-3 md:px-4 py-2.5 text-sm leading-relaxed"
-                      style={{
-                        borderRadius: msg.from === "lead" ? "5px 5px 0 5px" : "5px 5px 5px 0",
-                        background: msg.from === "lead" ? "rgba(83,58,253,0.12)" : "hsl(var(--secondary))",
-                        color: "hsl(var(--foreground))",
-                        border: msg.from === "ai" ? "1px solid hsl(var(--border))" : "none",
-                      }}
-                    >
-                      {msg.text}
-                    </div>
-                  </div>
-                ))}
-
-                {/* Typing indicator */}
-                <div className="flex justify-start">
-                  <div className="px-4 py-3 flex gap-1" style={{ background: "hsl(var(--secondary))", border: "1px solid hsl(var(--border))", borderRadius: "5px 5px 5px 0" }}>
-                    {[0, 150, 300].map((d) => (
+              <div className="space-y-3 p-4 md:p-5">
+                {messages.map((msg, i) => {
+                  const ai = msg.from === "ai";
+                  return (
+                    <div key={i} className={`flex ${ai ? "justify-end" : "justify-start"}`}>
                       <div
-                        key={d}
-                        className="h-2 w-2 rounded-full animate-bounce"
-                        style={{ background: "#533AFD", animationDelay: `${d}ms` }}
-                      />
-                    ))}
-                  </div>
-                </div>
+                        className={`max-w-[85%] rounded-xl px-3.5 py-2.5 text-sm leading-relaxed text-foreground ${
+                          ai ? "rounded-br-sm bg-[rgba(83,58,253,0.18)]" : "rounded-bl-sm border border-border bg-secondary"
+                        }`}
+                      >
+                        {msg.text}
+                        <span className="ml-3 inline-flex translate-y-0.5 items-center gap-1 align-baseline font-mono text-[11px] tabular-nums text-muted-foreground">
+                          {msg.time}
+                          {ai && <DoubleCheck className="h-2.5 w-[15px]" />}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
+
           </div>
         </div>
       </div>
